@@ -1,0 +1,42 @@
+<resources>
+    <string name="app_name">Diploma</string>
+    <string name="username">Username</string>
+    <string name="name">Name</string>
+    <string name="surname">Surname</string>
+    <string name="email">E-mail</string>
+    <string name="password">Password</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="agreement">I agree with Terms and Privacy</string>
+    <string name="login">Login</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="continue_text">Continue</string>
+    <string name="confirm">Confirm Password</string>
+    <string name="new_password">New Password</string>
+    <string name="confirm_password">Confirm New Password</string>
+    <string name="already_have">I already have an account.</string>
+    <string name="dont_have">Don’t have an account?</string>
+    <string name="study_progress">Study Progress</string>
+    <string name="approvement_of_skills">Approvement of Skills</string>
+    <string name="forgot_password">Forgot Password ?</string>
+    <string name="forgot_password_title">Forgot Password</string>
+    <string name="forgot_password_subtitle">
+        Select which contact details we use to reset your password
+    </string>
+    <string name="reset_password_title">Reset Password</string>
+    <string name="reset_password_subtitle">Create a new password</string>
+    <string name="smsText">SMS</string>
+    <string name="home_page">Home Page</string>
+    <string name="profile_page">Profile Page</string>
+    <string name="roadmap_page">Roadmap Page</string>
+    <string name="vacancies_page">Vacancies Page</string>
+    <string name="mentors_page">Mentors Page</string>
+    <string name="enter_name">Please enter a name</string>
+    <string name="enter_surname">Please enter a surname</string>
+    <string name="enter_email">Please enter a valid email address</string>
+    <string name="enter_phone">Please enter a valid phone number</string>
+    <string name="enter_password">Please enter a password</string>
+    <string name="wrong_password">Passwords don\'t match</string>
+    <string name="auth_token">auth_token</string>
+    <string name="user_id">user_id</string>
+    <string name="recommend">Recommendations</string>
+</resources>
