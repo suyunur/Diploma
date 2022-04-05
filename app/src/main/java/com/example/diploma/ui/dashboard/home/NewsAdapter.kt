@@ -30,6 +30,6 @@ class NewsAdapter(private val newsList: List<News?>)
         }
     }
 
-    inner class ViewHolder(val binding: ItemRecommendationBinding)
-        :RecyclerView.ViewHolder(binding.root)
+    inner class ViewHolder(val binding: ItemRecommendationBinding):
+        RecyclerView.ViewHolder(binding.root)
 }

@@ -6,6 +6,7 @@
         <entry key="..\:/Users/suyno/AndroidStudioProjects/Diploma/app/src/main/res/drawable/bg_button_sign.xml" value="0.137" />
         <entry key="..\:/Users/suyno/AndroidStudioProjects/Diploma/app/src/main/res/drawable/bg_contact_detail.xml" value="0.1715" />
         <entry key="..\:/Users/suyno/AndroidStudioProjects/Diploma/app/src/main/res/drawable/bg_forgot_password_contact.xml" value="0.1715" />
+        <entry key="..\:/Users/suyno/AndroidStudioProjects/Diploma/app/src/main/res/drawable/bg_item_news.xml" value="0.149" />
         <entry key="..\:/Users/suyno/AndroidStudioProjects/Diploma/app/src/main/res/drawable/bg_layout_top.xml" value="0.1455" />
         <entry key="..\:/Users/suyno/AndroidStudioProjects/Diploma/app/src/main/res/drawable/bg_main_white.xml" value="0.1525" />
         <entry key="..\:/Users/suyno/AndroidStudioProjects/Diploma/app/src/main/res/drawable/bg_password_edittext.xml" value="0.1715" />
@@ -33,7 +34,7 @@
         <entry key="..\:/Users/suyno/AndroidStudioProjects/Diploma/app/src/main/res/layout/diploma_container_fragment.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/suyno/AndroidStudioProjects/Diploma/app/src/main/res/layout/diploma_fragment_forgot_password.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/suyno/AndroidStudioProjects/Diploma/app/src/main/res/layout/diploma_fragment_login.xml" value="0.264" />
-        <entry key="..\:/Users/suyno/AndroidStudioProjects/Diploma/app/src/main/res/layout/diploma_fragment_main_page.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/suyno/AndroidStudioProjects/Diploma/app/src/main/res/layout/diploma_fragment_main_page.xml" value="0.264" />
         <entry key="..\:/Users/suyno/AndroidStudioProjects/Diploma/app/src/main/res/layout/diploma_fragment_profile.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/suyno/AndroidStudioProjects/Diploma/app/src/main/res/layout/diploma_fragment_register.xml" value="0.2" />
         <entry key="..\:/Users/suyno/AndroidStudioProjects/Diploma/app/src/main/res/layout/diploma_fragment_reset_password.xml" value="0.25416666666666665" />
