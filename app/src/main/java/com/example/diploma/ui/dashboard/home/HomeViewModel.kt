@@ -18,6 +18,6 @@ class HomeViewModel(
     private val _newsLiveData = MutableLiveData<List<News?>>()
 
     fun getNews() = viewModelScope.launch {
-        _newsLiveData.value = dashboardRepository.getNews().getOrNull()?.news
+        _newsLiveData.value = dashboardRepository.getNews().getOrNull()
     }
 }

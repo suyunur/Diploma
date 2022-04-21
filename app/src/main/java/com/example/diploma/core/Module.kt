@@ -4,7 +4,11 @@ import android.content.Context
 import android.content.SharedPreferences
 import com.example.diploma.R
 import com.example.diploma.data.DiplomaApi
+import com.example.diploma.data.repo.AuthRepository
+import com.example.diploma.data.repo.DashboardRepository
+import com.example.diploma.ui.dashboard.home.HomeViewModel
 import com.example.diploma.ui.login.AuthViewModel
+import kotlinx.coroutines.DelicateCoroutinesApi
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidContext
@@ -14,23 +18,26 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 
+@DelicateCoroutinesApi
 val module = module {
     single { provideRetrofit(get()) }
     single { provideApi(get()) }
     single { provideOKHttp(get(), androidContext()) }
     single { provideSharedPreferences(androidContext()) }
+    single { provideAuthRepo(get(), get(), androidContext()) }
+    single { provideDashRepo(get()) }
 }
 
+@DelicateCoroutinesApi
 val vmModule = module {
-    viewModel {
-        AuthViewModel(get())
-    }
+    viewModel { AuthViewModel(get()) }
+    viewModel { HomeViewModel(get()) }
 }
 
-private fun provideRetrofit(okHttpClient: OkHttpClient) {
-    Retrofit.Builder()
+private fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
+    return Retrofit.Builder()
         .addConverterFactory(GsonConverterFactory.create())
-        .baseUrl("http://it-bilim.herokuapp.com/api")
+        .baseUrl("http://it-bilim.herokuapp.com/api/")
         .client(okHttpClient)
         .build()
 }
@@ -58,3 +65,16 @@ private fun provideOKHttp(sharedPreferences: SharedPreferences, context: Context
         }
         .build()
 }
+
+@DelicateCoroutinesApi
+fun provideAuthRepo(
+    api: DiplomaApi,
+    sharedPreferences: SharedPreferences,
+    context: Context
+): AuthRepository =
+    AuthRepository(api, sharedPreferences, context)
+
+fun provideDashRepo(
+    api: DiplomaApi
+): DashboardRepository =
+    DashboardRepository(api)

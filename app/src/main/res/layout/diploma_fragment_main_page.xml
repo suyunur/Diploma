@@ -9,19 +9,14 @@
     <include
         layout="@layout/diploma_top_bar"/>
 
-<!--    <androidx.constraintlayout.motion.widget.MotionLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginTop="24dp">-->
-
-<!--        <androidx.constraintlayout.helper.widget.Carousel-->
-<!--            android:id="@+id/carousel"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            app:carousel_infinite="true"-->
-<!--            />-->
-
-<!--    </androidx.constraintlayout.motion.widget.MotionLayout>-->
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        tools:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/item_carousel"
+        />
 
     <TextView
         android:layout_width="match_parent"

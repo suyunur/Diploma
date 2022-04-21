@@ -20,9 +20,4 @@
         android:enabled="true"
         android:title="@string/vacancies_page"
         android:icon="@drawable/bottom_nav_icon_vacancies"/>
-    <item
-        android:id="@+id/mentors_page"
-        android:enabled="true"
-        android:title="@string/mentors_page"
-        android:icon="@drawable/bottom_nav_icon_mentors"/>
 </menu>

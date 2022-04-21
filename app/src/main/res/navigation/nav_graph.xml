@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_graph">
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/splashFragment">
 
     <fragment
         android:id="@+id/splashFragment"
@@ -24,6 +26,9 @@
         <action
             android:id="@+id/action_login_to_register"
             app:destination="@id/registerFragment" />
+        <action
+            android:id="@+id/action_login_to_container"
+            app:destination="@+id/containerFragment"/>
     </fragment>
     <fragment
         android:id="@+id/containerFragment"

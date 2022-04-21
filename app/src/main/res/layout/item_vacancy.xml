@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="16dp"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/bg_vacancy">
+
+    <ImageView
+        android:id="@+id/vacancyImage"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:src="@mipmap/ic_one"
+        />
+
+    <TextView
+        android:id="@+id/vacancyTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="20dp"
+        android:fontFamily="@font/source_sans_pro_semibold"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@id/vacancyImage"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Middle/Senior Python \nBackend developer" />
+
+    <ImageView
+        android:id="@+id/bookmark"
+        android:layout_width="27dp"
+        android:layout_height="27dp"
+        android:layout_marginEnd="10dp"
+        android:src="@drawable/ic_mark"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+    <TextView
+        android:id="@+id/companyName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:textColor="@color/gray7"
+        android:textSize="12sp"
+        android:fontFamily="@font/source_sans_pro_regular"
+        app:layout_constraintBottom_toTopOf="@id/vacancyDetail"
+        app:layout_constraintStart_toEndOf="@id/vacancyImage"
+        app:layout_constraintTop_toBottomOf="@+id/vacancyTitle"
+        tools:text="ONE Technologies"
+        />
+
+    <TextView
+        android:id="@+id/vacancyDetail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:textColor="@color/gray7"
+        android:textSize="10sp"
+        tools:text="Almaty - Part time"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/vacancyImage"
+        tools:ignore="SmallSp"
+        />
+
+    <TextView
+        android:id="@+id/salary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="16dp"
+        tools:text="650 000 KZT"
+        android:textSize="24sp"
+        android:textColor="@color/blue"
+        android:fontFamily="@font/source_sans_pro_semibold"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
