@@ -61,8 +61,7 @@ class LoginFragment : Fragment() {
     }
 
     private val tokenObserver = Observer<AuthResponse?> {
-        it
-        viewModel.saveAuthResponse(it)
+        //viewModel.saveAuthResponse(it)
     }
 
     private fun setUpClickListeners() {
@@ -84,6 +83,7 @@ class LoginFragment : Fragment() {
                 email = email,
                 password = password
             )
+            viewModel.saveAuthResponse(viewModel.authLiveData.value)
             openContainerFragment()
         }
     }

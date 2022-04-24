@@ -63,9 +63,9 @@ class AuthViewModel(
             )
         )
 
-        _loadLiveData.value = false
-
         _authLiveData.value = response
+
+        _loadLiveData.value = false
     }
 
     fun saveAuthResponse(response: AuthResponse?) {

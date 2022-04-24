@@ -137,6 +137,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/vacancySalary"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="end"
@@ -146,6 +147,7 @@
                         tools:text="650 000 KZT"/>
 
                     <TextView
+                        android:id="@+id/vacancyJobType"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="end"
@@ -156,6 +158,7 @@
                         tools:text="Full-time"/>
 
                     <TextView
+                        android:id="@+id/vacancyCompanyLocation"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="end"
@@ -201,6 +204,7 @@
                     />
 
                 <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/requirements"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"

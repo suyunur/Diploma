@@ -1,6 +1,7 @@
 package com.example.diploma.data
 
 import com.example.diploma.data.model.News
+import com.example.diploma.data.model.Vacancy
 import com.example.diploma.data.requestBody.LoginRequestBody
 import com.example.diploma.data.requestBody.UserRequestBody
 import com.example.diploma.data.responseBody.AuthResponse
@@ -21,5 +22,8 @@ interface DiplomaApi {
 
     @GET("recs/")
     suspend fun getNews(): Result<List<News>?>
+
+    @GET("vacancies/")
+    suspend fun getVacancies(): List<Vacancy?>
 
 }

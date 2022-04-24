@@ -19,8 +19,9 @@
             android:id="@+id/filterRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="20dp"
             android:orientation="horizontal"
+            tools:listitem="@layout/item_filer"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             />
 
@@ -28,7 +29,7 @@
             android:id="@+id/vacanciesRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="28dp"
+            android:layout_marginTop="18dp"
             tools:listitem="@layout/item_vacancy"
             android:layout_marginBottom="10dp"
             />

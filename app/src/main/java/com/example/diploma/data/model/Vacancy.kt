@@ -14,5 +14,8 @@ data class Vacancy(
     val schedule: String?,
     val specialization: String?,
     val location: String?,
-    val skill: List<Skill>
+    val skill: List<Skill>,
+    val vacancyUrl: String,
+    val companyName: String,
+    val requirements: List<Requirement?>
 ): Serializable

@@ -17,7 +17,7 @@ class HomeFragment : Fragment() {
     private var _binding: DiplomaFragmentMainPageBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel by viewModels<HomeViewModel>()
+      private val viewModel: HomeViewModel by viewModel()
 
     private lateinit var adapter: NewsAdapter
 
@@ -34,11 +34,9 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setUpObservers()
-    }
-
-    init {
         viewModel.getNews()
+
+        setUpObservers()
     }
 
     private fun setUpObservers() {
