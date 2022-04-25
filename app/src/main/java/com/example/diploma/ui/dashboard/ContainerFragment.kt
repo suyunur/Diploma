@@ -28,9 +28,15 @@ class ContainerFragment: Fragment() {
     ): View {
         _binding = DiplomaContainerFragmentBinding.inflate(inflater, container, false)
 
-        setUpBottomNavigationMenu()
-
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.bottomNavigation.itemIconTintList = null
+
+        setUpBottomNavigationMenu()
     }
 
     private fun setUpBottomNavigationMenu() {
