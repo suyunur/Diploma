@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_graph">
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/splashFragment">
 
     <fragment
         android:id="@+id/splashFragment"
@@ -23,7 +25,10 @@
         tools:layout="@layout/diploma_fragment_login">
         <action
             android:id="@+id/action_login_to_register"
-            app:destination="@id/registerFragment" />
+            app:destination="@id/registerFragment"/>
+        <action
+            android:id="@+id/action_login_to_container"
+            app:destination="@+id/containerFragment"/>
     </fragment>
     <fragment
         android:id="@+id/containerFragment"
@@ -39,7 +44,26 @@
         tools:layout="@layout/diploma_fragment_register">
         <action
             android:id="@+id/action_register_to_login"
-            app:destination="@id/loginFragment" />
+            app:destination="@id/loginFragment"/>
+    </fragment>
+    <fragment
+        android:id="@+id/vacanciesFragment"
+        android:name="com.example.diploma.ui.dashboard.vacancies.VacanciesFragment"
+        android:label="vacanciesFragment"
+        tools:layout="@layout/diploma_fragment_vacancies">
+        <action
+            android:id="@+id/action_vacancies_to_detail"
+            app:destination="@+id/vacancyDetail"/>
+    </fragment>
+    <fragment
+        android:id="@+id/vacancyDetail"
+        android:name="com.example.diploma.ui.dashboard.vacancies.VacancyDetailFragment"
+        android:label="vacancyDetail"
+        tools:layout="@layout/diploma_fragment_vacancy_detail">
+        <argument
+            android:name="vacancy"
+            app:argType="com.example.diploma.data.model.Vacancy"/>
+
     </fragment>
 
 </navigation>

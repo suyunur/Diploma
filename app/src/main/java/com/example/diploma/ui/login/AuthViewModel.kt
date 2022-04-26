@@ -8,16 +8,18 @@ import com.example.diploma.data.repo.AuthRepository
 import com.example.diploma.data.requestBody.LoginRequestBody
 import com.example.diploma.data.requestBody.UserRequestBody
 import com.example.diploma.data.responseBody.AuthResponse
+import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.launch
 
 
+@DelicateCoroutinesApi
 class AuthViewModel(
     private val authRepository: AuthRepository,
 ): ViewModel() {
 
-    val authLiveData: LiveData<AuthResponse>
+    val authLiveData: LiveData<AuthResponse?>
         get() = _authLiveData
-    private val _authLiveData = MutableLiveData<AuthResponse>()
+    private val _authLiveData = MutableLiveData<AuthResponse?>()
 
     val loadLiveData: LiveData<Boolean>
         get() = _loadLiveData
@@ -32,18 +34,18 @@ class AuthViewModel(
     ) = viewModelScope.launch {
         _loadLiveData.value = true
 
-        val response = authRepository.register(
+        authRepository.register(
             UserRequestBody(
-                name = name,
-                surname = surname,
+                first_name = name,
+                last_name = surname,
                 email = email,
-                phone = phoneNumber,
                 password = password
             )
         )
-        _authLiveData.value = response.getOrNull()
-
-        _authLiveData.value?.let { saveAuthResponse(it) }
+        login(
+            email = email,
+            password = password
+        )
 
         _loadLiveData.value = false
     }
@@ -54,17 +56,19 @@ class AuthViewModel(
     ) = viewModelScope.launch {
         _loadLiveData.value = true
 
-        authRepository.login(
+        val response = authRepository.login(
             LoginRequestBody(
                 email = email,
                 password = password
             )
         )
 
+        _authLiveData.value = response
+
         _loadLiveData.value = false
     }
 
-    private fun saveAuthResponse(response: AuthResponse) {
-        authRepository.saveAuthResponse(response)
+    fun saveAuthResponse(response: AuthResponse?) {
+        response?.let { authRepository.saveAuthResponse(it) }
     }
 }

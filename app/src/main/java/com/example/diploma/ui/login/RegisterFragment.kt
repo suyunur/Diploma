@@ -3,25 +3,40 @@ package com.example.diploma.ui.login
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.text.InputType
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.diploma.R
 import com.example.diploma.databinding.DiplomaFragmentRegisterBinding
+import kotlinx.coroutines.DelicateCoroutinesApi
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
+@DelicateCoroutinesApi
 class RegisterFragment: Fragment() {
 
-    private lateinit var binding: DiplomaFragmentRegisterBinding
+    private var _binding: DiplomaFragmentRegisterBinding? = null
+    private val binding get() = _binding!!
 
     private val viewModel: AuthViewModel by viewModel()
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        _binding = DiplomaFragmentRegisterBinding.inflate(inflater, container, false)
+
+        return binding.root
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding = DiplomaFragmentRegisterBinding.bind(view)
+        binding.topBar.title.text = context?.getString(R.string.sign_up)
 
         setUpObservers()
         setUpClickListeners()
@@ -43,7 +58,7 @@ class RegisterFragment: Fragment() {
 
     private fun setUpClickListeners() {
         binding.signUpButton.setOnClickListener {
-            register()
+            checkIfEmpty()
         }
 
         binding.seePasswordButton.setOnClickListener {
@@ -60,50 +75,42 @@ class RegisterFragment: Fragment() {
     }
 
     private fun register() {
-        hideErrorTexts()
-        if (checkIfEmpty()) {
-            if (agreementChecked()) {
-                if (passwordsMatch()) {
-                    val name = binding.nameEditText.text.toString()
-                    val surname = binding.surnameEditText.text.toString()
-                    val email = binding.emailEditText.text.toString()
-                    val phone = binding.phoneNumberEditText.text.toString()
-                    val password = binding.passwordEditText.text.toString()
-                    viewModel.register(
-                        name = name, surname = surname, email = email,
-                        phoneNumber = phone, password = password
-                    )
-                }
-            }
-        }
+        val name = binding.nameEditText.text.toString()
+        val surname = binding.surnameEditText.text.toString()
+        val email = binding.emailEditText.text.toString()
+        val phone = binding.phoneNumberEditText.text.toString()
+        val password = binding.passwordEditText.text.toString()
+
+        viewModel.register(
+            name = name, surname = surname, email = email,
+            phoneNumber = phone, password = password
+        )
     }
 
-    private fun checkIfEmpty(): Boolean {
+    private fun checkIfEmpty() {
         if (binding.nameEditText.text.isEmpty()) {
             binding.nameErrorText.visibility = View.VISIBLE
-            return false
         }
         if (binding.surnameEditText.text.isEmpty()) {
             binding.surnameErrorText.visibility = View.VISIBLE
-            return false
         }
         if (binding.emailEditText.text.isEmpty()) {
             binding.emailErrorText.visibility = View.VISIBLE
-            return false
         }
         if (binding.phoneNumberEditText.text.isEmpty()) {
             binding.phoneNumberErrorText.visibility = View.VISIBLE
-            return false
         }
         if (binding.passwordEditText.text.isEmpty()) {
             binding.passwordErrorText.visibility = View.VISIBLE
-            return false
         }
         if (binding.confirmPasswordEditText.text.isEmpty()) {
             binding.confirmErrorText.visibility = View.VISIBLE
-            return false
         }
-        return true
+
+        else {
+            hideErrorTexts()
+            if (passwordsMatch()) register()
+        }
     }
 
     private fun agreementChecked(): Boolean {
@@ -116,8 +123,8 @@ class RegisterFragment: Fragment() {
     }
 
     private fun passwordsMatch(): Boolean {
-        return if (binding.passwordEditText.text.
-            equals(binding.confirmPasswordEditText.text)) {
+        return if (binding.passwordEditText.text.toString() ==
+            binding.confirmPasswordEditText.text.toString()) {
             true
         } else {
             binding.confirmErrorText.visibility = View.VISIBLE

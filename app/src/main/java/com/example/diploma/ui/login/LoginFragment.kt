@@ -2,33 +2,51 @@ package com.example.diploma.ui.login
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.diploma.R
+import com.example.diploma.data.responseBody.AuthResponse
 import com.example.diploma.databinding.DiplomaFragmentLoginBinding
+import kotlinx.coroutines.DelicateCoroutinesApi
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
+@DelicateCoroutinesApi
 class LoginFragment : Fragment() {
 
-    private lateinit var binding: DiplomaFragmentLoginBinding
+    private var _binding: DiplomaFragmentLoginBinding? = null
+    private val binding get() = _binding!!
 
     private val viewModel: AuthViewModel by viewModel()
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        _binding = DiplomaFragmentLoginBinding.inflate(inflater, container, false)
+
+        return binding.root
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding = DiplomaFragmentLoginBinding.bind(view)
+        binding.topBar.title.text = context?.getString(R.string.login)
 
         setUpObservers()
 
         setUpClickListeners()
+
     }
 
     private fun setUpObservers() {
         viewModel.loadLiveData.observe(viewLifecycleOwner, loadObserver)
+        viewModel.authLiveData.observe(viewLifecycleOwner, tokenObserver)
     }
 
     @SuppressLint("SetTextI18n")
@@ -40,6 +58,10 @@ class LoginFragment : Fragment() {
             binding.loginActionButton.text = context?.getString(R.string.login)
             binding.loginProgressBar.visibility = View.GONE
         }
+    }
+
+    private val tokenObserver = Observer<AuthResponse?> {
+        //viewModel.saveAuthResponse(it)
     }
 
     private fun setUpClickListeners() {
@@ -61,11 +83,17 @@ class LoginFragment : Fragment() {
                 email = email,
                 password = password
             )
+            viewModel.saveAuthResponse(viewModel.authLiveData.value)
+            openContainerFragment()
         }
     }
 
     private fun openRegisterFragment() {
-        findNavController().navigate(R.id.action_register_to_login)
+        findNavController().navigate(R.id.action_login_to_register)
+    }
+
+    private fun openContainerFragment() {
+        findNavController().navigate(R.id.action_login_to_container)
     }
 
     private fun hideErrorTexts() {
@@ -83,5 +111,10 @@ class LoginFragment : Fragment() {
             return false
         }
         return true
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

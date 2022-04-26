@@ -20,4 +20,11 @@
         app:navGraph="@navigation/nav_graph"
         />
 
+    <TextView
+        android:layout_width="match_parent"
+        android:textColor="@color/blue"
+        android:layout_height="match_parent"
+        android:textSize="40sp"
+        android:text="CHECK"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
