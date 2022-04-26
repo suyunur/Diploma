@@ -5,6 +5,7 @@
       <map>
         <entry key="..\:/Users/suyno/AndroidStudioProjects/Diploma/app/src/main/res/drawable/bg_action.xml" value="0.1" />
         <entry key="..\:/Users/suyno/AndroidStudioProjects/Diploma/app/src/main/res/drawable/bg_button_sign.xml" value="0.137" />
+        <entry key="..\:/Users/suyno/AndroidStudioProjects/Diploma/app/src/main/res/drawable/bg_chapter.xml" value="0.149" />
         <entry key="..\:/Users/suyno/AndroidStudioProjects/Diploma/app/src/main/res/drawable/bg_contact_detail.xml" value="0.1715" />
         <entry key="..\:/Users/suyno/AndroidStudioProjects/Diploma/app/src/main/res/drawable/bg_filter.xml" value="0.1" />
         <entry key="..\:/Users/suyno/AndroidStudioProjects/Diploma/app/src/main/res/drawable/bg_forgot_password_contact.xml" value="0.1715" />
@@ -40,6 +41,8 @@
         <entry key="..\:/Users/suyno/AndroidStudioProjects/Diploma/app/src/main/res/drawable/ic_list_of_mentors.xml" value="0.1455" />
         <entry key="..\:/Users/suyno/AndroidStudioProjects/Diploma/app/src/main/res/drawable/ic_list_of_mentors_checked.xml" value="0.1455" />
         <entry key="..\:/Users/suyno/AndroidStudioProjects/Diploma/app/src/main/res/drawable/ic_mark.xml" value="0.1095" />
+        <entry key="..\:/Users/suyno/AndroidStudioProjects/Diploma/app/src/main/res/drawable/ic_next.xml" value="0.149" />
+        <entry key="..\:/Users/suyno/AndroidStudioProjects/Diploma/app/src/main/res/drawable/ic_ooui_arrow_next_ltr.xml" value="0.149" />
         <entry key="..\:/Users/suyno/AndroidStudioProjects/Diploma/app/src/main/res/drawable/ic_profile.xml" value="0.1" />
         <entry key="..\:/Users/suyno/AndroidStudioProjects/Diploma/app/src/main/res/drawable/ic_roadmap.xml" value="0.1455" />
         <entry key="..\:/Users/suyno/AndroidStudioProjects/Diploma/app/src/main/res/drawable/ic_roadmap_checked.xml" value="0.1455" />
@@ -57,6 +60,7 @@
         <entry key="..\:/Users/suyno/AndroidStudioProjects/Diploma/app/src/main/res/layout/diploma_fragment_register.xml" value="0.2" />
         <entry key="..\:/Users/suyno/AndroidStudioProjects/Diploma/app/src/main/res/layout/diploma_fragment_reset_password.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/suyno/AndroidStudioProjects/Diploma/app/src/main/res/layout/diploma_fragment_splash.xml" value="0.136" />
+        <entry key="..\:/Users/suyno/AndroidStudioProjects/Diploma/app/src/main/res/layout/diploma_fragment_topics.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/suyno/AndroidStudioProjects/Diploma/app/src/main/res/layout/diploma_fragment_vacancies.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/suyno/AndroidStudioProjects/Diploma/app/src/main/res/layout/diploma_fragment_vacancy_detail.xml" value="0.176" />
         <entry key="..\:/Users/suyno/AndroidStudioProjects/Diploma/app/src/main/res/layout/diploma_study_material.xml" value="0.25" />
@@ -68,6 +72,7 @@
         <entry key="..\:/Users/suyno/AndroidStudioProjects/Diploma/app/src/main/res/layout/item_recommendation.xml" value="0.22644927536231885" />
         <entry key="..\:/Users/suyno/AndroidStudioProjects/Diploma/app/src/main/res/layout/item_requirement.xml" value="0.264" />
         <entry key="..\:/Users/suyno/AndroidStudioProjects/Diploma/app/src/main/res/layout/item_study_progress.xml" value="0.6" />
+        <entry key="..\:/Users/suyno/AndroidStudioProjects/Diploma/app/src/main/res/layout/item_topic.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/suyno/AndroidStudioProjects/Diploma/app/src/main/res/layout/item_vacancy.xml" value="0.536" />
         <entry key="..\:/Users/suyno/AndroidStudioProjects/Diploma/app/src/main/res/layout/layout_top.xml" value="0.12360688956433637" />
         <entry key="..\:/Users/suyno/AndroidStudioProjects/Diploma/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.1" />
