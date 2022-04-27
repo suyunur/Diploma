@@ -24,13 +24,21 @@ class AuthRepository(
     }
 
     suspend fun login(user: LoginRequestBody): AuthResponse? {
-        return withContext(Dispatchers.IO) {
-            api.login(user)
+        return try {
+            withContext(Dispatchers.IO) {
+                api.login(user)
+            }
+        } catch (e: Exception) {
+            null
         }
     }
 
     fun saveAuthResponse(response: AuthResponse) {
         sharedPreferences.edit().putString(context.getString(R.string.auth_token), response.refresh).apply()
         sharedPreferences.edit().putString(context.getString(R.string.user_id), response.access).apply()
+    }
+
+    fun saveUserName(name: String) {
+        sharedPreferences.edit().putString(context.getString(R.string.username), name).apply()
     }
 }

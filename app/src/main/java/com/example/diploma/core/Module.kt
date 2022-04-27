@@ -7,6 +7,7 @@ import com.example.diploma.data.DiplomaApi
 import com.example.diploma.data.repo.AuthRepository
 import com.example.diploma.data.repo.DashboardRepository
 import com.example.diploma.ui.dashboard.home.HomeViewModel
+import com.example.diploma.ui.dashboard.vacancies.VacanciesViewModel
 import com.example.diploma.ui.login.AuthViewModel
 import kotlinx.coroutines.DelicateCoroutinesApi
 import okhttp3.OkHttpClient
@@ -32,12 +33,13 @@ val module = module {
 val vmModule = module {
     viewModel { AuthViewModel(get()) }
     viewModel { HomeViewModel(get()) }
+    viewModel { VacanciesViewModel(get()) }
 }
 
 private fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
     return Retrofit.Builder()
         .addConverterFactory(GsonConverterFactory.create())
-        .baseUrl("http://it-bilim.herokuapp.com/api/")
+        .baseUrl("http://demo-it-bilim.herokuapp.com/api/")
         .client(okHttpClient)
         .build()
 }

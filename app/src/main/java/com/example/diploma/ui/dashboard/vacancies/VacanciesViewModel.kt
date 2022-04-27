@@ -16,10 +16,55 @@ class VacanciesViewModel(
         get() = _vacanciesLiveData
     private val _vacanciesLiveData = MutableLiveData<List<Vacancy?>>()
 
+    val statusLiveData: LiveData<Boolean>
+        get() = _statusLiveData
+    private val _statusLiveData = MutableLiveData<Boolean>()
+
     fun getVacancies() = viewModelScope.launch {
+        _statusLiveData.value = true
 
         _vacanciesLiveData.value = dashboardRepository.getVacancies()
 
+        _statusLiveData.value = false
+    }
+
+    fun getVacanciesByFilter(filter: String): List<Vacancy?>? {
+        val vacancies = _vacanciesLiveData.value
+
+        return when (filter) {
+
+            "Internship" -> {
+                vacancies?.filter {
+                    it?.jobType == "INTERNSHIP"
+                }
+            }
+
+            "Full Time" -> {
+                vacancies?.filter {
+                    it?.jobType == "FULL TIME"
+                }
+            }
+
+            "Part Time" -> {
+                vacancies?.filter {
+                    it?.jobType == "PART TIME"
+                }
+            }
+
+            "Project Work" -> {
+                vacancies?.filter {
+                    it?.jobType == "PROJECT WORK"
+                }
+            }
+
+            "Volunteering" -> {
+                vacancies?.filter {
+                    it?.jobType == "Volunteering".uppercase()
+                }
+            }
+
+            else -> vacancies
+        }
     }
 
 }

@@ -17,6 +17,7 @@
         android:layout_height="wrap_content"
         app:menu="@menu/bottom_navigation_menu"
         app:itemIconSize="40dp"
+        app:labelVisibilityMode="unlabeled"
         />
 
 </LinearLayout>

@@ -44,8 +44,8 @@ class ContainerFragment: Fragment() {
         profileFragment = ProfileFragment()
         vacanciesFragment = VacanciesFragment()
 
-        replaceFragment(homeFragment)
-        binding.bottomNavigation.selectedItemId = R.id.home_page
+        replaceFragment(vacanciesFragment)
+        binding.bottomNavigation.selectedItemId = R.id.vacancies_page
 
         binding.bottomNavigation.setOnItemSelectedListener {
             when (it.itemId) {
