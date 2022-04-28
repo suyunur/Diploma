@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingTop="24dp"
+    android:paddingBottom="24dp"
+    android:paddingStart="16dp"
+    android:paddingEnd="16dp"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/orange_light"
+    android:orientation="horizontal"
+    android:gravity="center">
+
+    <TextView
+        android:id="@+id/skillName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="HTML"
+        android:textSize="24sp"
+        android:textColor="@color/orange"
+        android:fontFamily="@font/source_sans_pro_semibold"
+        />
+
+    <ImageView
+        android:id="@+id/imageSkill"
+        android:layout_width="27dp"
+        android:layout_height="27dp"
+        android:layout_marginStart="30dp"
+        android:src="@drawable/ic_carbon_task_approved"
+        />
+
+</LinearLayout>

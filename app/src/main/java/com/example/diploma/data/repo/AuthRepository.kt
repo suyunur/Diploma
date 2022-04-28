@@ -41,4 +41,6 @@ class AuthRepository(
     fun saveUserName(name: String) {
         sharedPreferences.edit().putString(context.getString(R.string.username), name).apply()
     }
+
+
 }

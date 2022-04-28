@@ -42,7 +42,7 @@ class VacancyDetailFragment: DialogFragment() {
 
         requirementsAdapter = RequirementsAdapter()
 
-        binding.topPanel.title.text = getString(R.string.vacancies)
+        binding.topPanel.title.text = getString(R.string.job_detail)
 
         fillVacancyDetail()
 

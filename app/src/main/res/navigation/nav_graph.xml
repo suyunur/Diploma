@@ -35,7 +35,9 @@
         android:name="com.example.diploma.ui.dashboard.ContainerFragment"
         android:label="containerFragment"
         tools:layout="@layout/diploma_container_fragment">
-
+        <action
+            android:id="@+id/action_container_to_login"
+            app:destination="@+id/loginFragment"/>
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
