@@ -7,7 +7,7 @@
 
     <include
         android:id="@+id/topPanel"
-        layout="@layout/diploma_top_bar"/>
+        layout="@layout/layout_top"/>
 
     <LinearLayout
         android:layout_width="match_parent"
