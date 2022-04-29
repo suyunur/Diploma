@@ -41,6 +41,7 @@
     <string name="recommend">Recommendations</string>
     <string name="title_activity_new">NewActivity</string>
     <string name="vacancies">Vacancies</string>
+    <string name="job_detail">Job Detail</string>
     <string name="resources">Resources for learning</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
@@ -54,4 +55,6 @@
     <string name="type">Type</string>
     <string name="location">Location</string>
     <string name="requirements">Requirements</string>
+    <string name="invalid_e_mail_or_password">Invalid e-mail or password</string>
+    <string name="hello">Hello</string>
 </resources>

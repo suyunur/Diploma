@@ -35,7 +35,12 @@
         android:name="com.example.diploma.ui.dashboard.ContainerFragment"
         android:label="containerFragment"
         tools:layout="@layout/diploma_container_fragment">
-
+        <action
+            android:id="@+id/action_container_to_login"
+            app:destination="@+id/loginFragment"/>
+        <action
+            android:id="@+id/action_container_to_tech"
+            app:destination="@id/technologiesFragment"/>
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
@@ -63,7 +68,12 @@
         <argument
             android:name="vacancy"
             app:argType="com.example.diploma.data.model.Vacancy"/>
-
+    </fragment>
+    <fragment
+        android:id="@+id/technologiesFragment"
+        android:name="com.example.diploma.ui.dashboard.roadmap.TechFragment"
+        android:label="techFragment"
+        tools:layout="@layout/diploma_layout_technologies">
     </fragment>
 
 </navigation>

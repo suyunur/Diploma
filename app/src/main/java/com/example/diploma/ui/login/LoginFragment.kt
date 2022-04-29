@@ -61,7 +61,12 @@ class LoginFragment : Fragment() {
     }
 
     private val tokenObserver = Observer<AuthResponse?> {
-        //viewModel.saveAuthResponse(it)
+        if (it == null) {
+            binding.errorLayout.visibility = View.VISIBLE
+        } else {
+            viewModel.saveAuthResponse(it)
+            openContainerFragment()
+        }
     }
 
     private fun setUpClickListeners() {
@@ -83,8 +88,6 @@ class LoginFragment : Fragment() {
                 email = email,
                 password = password
             )
-            viewModel.saveAuthResponse(viewModel.authLiveData.value)
-            openContainerFragment()
         }
     }
 
@@ -99,6 +102,7 @@ class LoginFragment : Fragment() {
     private fun hideErrorTexts() {
         binding.emailErrorText.visibility = View.GONE
         binding.passwordErrorText.visibility = View.GONE
+        binding.errorLayout.visibility = View.GONE
     }
 
     private fun checkIfEmpty(): Boolean {

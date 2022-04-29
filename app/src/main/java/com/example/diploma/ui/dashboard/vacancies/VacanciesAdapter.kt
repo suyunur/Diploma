@@ -3,8 +3,6 @@ package com.example.diploma.ui.dashboard.vacancies
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.diploma.data.model.Vacancy
@@ -12,8 +10,16 @@ import com.example.diploma.databinding.ItemVacancyBinding
 
 
 class VacanciesAdapter(
-    private val listener: ClickListener, diffCallback: DiffUtil.ItemCallback<Vacancy>?
-) : ListAdapter<Vacancy, VacanciesAdapter.ViewHolder>(diffCallback as DiffUtil.ItemCallback<Vacancy>) {
+    private val listener: ClickListener
+) : RecyclerView.Adapter<VacanciesAdapter.ViewHolder>() {
+
+    var vacancies = mutableListOf<Vacancy?>()
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun setList(vacancies: List<Vacancy?>) {
+        this.vacancies = vacancies.toMutableList()
+        notifyDataSetChanged()
+    }
 
     interface ClickListener {
         fun onClick(vacancy: Vacancy)
@@ -32,7 +38,7 @@ class VacanciesAdapter(
             vacancyTitle.text = vacancy.title
             companyName.text = vacancy.companyName
             vacancyDetail.text = "${vacancy.location} - ${vacancy.jobType}"
-            salary.text = vacancy.salary.toString()
+            salary.text = vacancy.final_salary.toString()
 
             Glide
                 .with(vacancyImage.context)
@@ -44,7 +50,8 @@ class VacanciesAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(getItem(position))
+        val vacancy = vacancies[position]
+        vacancy?.let { holder.bind(it) }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -52,6 +59,10 @@ class VacanciesAdapter(
             LayoutInflater.from(parent.context), parent, false
         )
         return ViewHolder(itemBinding)
+    }
+
+    override fun getItemCount(): Int {
+        return vacancies.size
     }
 
 }

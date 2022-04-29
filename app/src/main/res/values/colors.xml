@@ -21,4 +21,7 @@
     <color name="dark_blue">#22215B</color>
     <color name="light_purple">#EEF0FF</color>
     <color name="red_error">#FF0000</color>
+    <color name="red_light">#FFDEDE</color>
+    <color name="orange">#FFB110</color>
+    <color name="orange_light">#FFFBEC</color>
 </resources>

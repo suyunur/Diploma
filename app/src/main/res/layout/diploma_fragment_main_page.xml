@@ -7,6 +7,7 @@
     android:orientation="vertical">
 
     <include
+        android:id="@+id/topPanel"
         layout="@layout/diploma_top_bar"/>
 
     <androidx.recyclerview.widget.RecyclerView

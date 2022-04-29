@@ -9,6 +9,7 @@ import com.example.diploma.R
 import com.example.diploma.databinding.DiplomaContainerFragmentBinding
 import com.example.diploma.ui.dashboard.home.HomeFragment
 import com.example.diploma.ui.dashboard.profile.ProfileFragment
+import com.example.diploma.ui.dashboard.roadmap.RoadmapFragment
 import com.example.diploma.ui.dashboard.vacancies.VacanciesFragment
 
 
@@ -20,6 +21,7 @@ class ContainerFragment: Fragment() {
     private lateinit var homeFragment: HomeFragment
     private lateinit var profileFragment: ProfileFragment
     private lateinit var vacanciesFragment: VacanciesFragment
+    private lateinit var roadmapFragment: RoadmapFragment
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -43,9 +45,10 @@ class ContainerFragment: Fragment() {
         homeFragment = HomeFragment()
         profileFragment = ProfileFragment()
         vacanciesFragment = VacanciesFragment()
+        roadmapFragment = RoadmapFragment()
 
-        replaceFragment(homeFragment)
-        binding.bottomNavigation.selectedItemId = R.id.home_page
+        replaceFragment(vacanciesFragment)
+        binding.bottomNavigation.selectedItemId = R.id.vacancies_page
 
         binding.bottomNavigation.setOnItemSelectedListener {
             when (it.itemId) {
@@ -59,6 +62,10 @@ class ContainerFragment: Fragment() {
                 }
                 R.id.vacancies_page -> {
                     replaceFragment(vacanciesFragment)
+                    true
+                }
+                R.id.roadmap_page -> {
+                    replaceFragment(roadmapFragment)
                     true
                 }
                 else -> false
