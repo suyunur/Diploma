@@ -57,4 +57,5 @@
     <string name="requirements">Requirements</string>
     <string name="invalid_e_mail_or_password">Invalid e-mail or password</string>
     <string name="hello">Hello</string>
+    <string name="diploma_project">Diploma Project</string>
 </resources>

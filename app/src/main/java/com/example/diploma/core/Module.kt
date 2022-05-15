@@ -7,6 +7,7 @@ import com.example.diploma.data.DiplomaApi
 import com.example.diploma.data.repo.AuthRepository
 import com.example.diploma.data.repo.DashboardRepository
 import com.example.diploma.ui.dashboard.home.HomeViewModel
+import com.example.diploma.ui.dashboard.roadmap.RoadmapViewModel
 import com.example.diploma.ui.dashboard.vacancies.VacanciesViewModel
 import com.example.diploma.ui.login.AuthViewModel
 import kotlinx.coroutines.DelicateCoroutinesApi
@@ -34,6 +35,7 @@ val vmModule = module {
     viewModel { AuthViewModel(get()) }
     viewModel { HomeViewModel(get()) }
     viewModel { VacanciesViewModel(get()) }
+    viewModel { RoadmapViewModel(get()) }
 }
 
 private fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {

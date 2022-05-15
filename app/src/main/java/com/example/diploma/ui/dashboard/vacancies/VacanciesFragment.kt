@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.example.diploma.R
 import com.example.diploma.data.CHOSEN_VACANCY
+import com.example.diploma.data.VACANCY_STATIC
 import com.example.diploma.data.model.Vacancy
 import com.example.diploma.databinding.DiplomaFragmentVacanciesBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -25,6 +26,8 @@ class VacanciesFragment: Fragment(),
     private lateinit var filtersAdapter: FilterAdapter
 
     private val viewModel: VacanciesViewModel by viewModel()
+
+    private lateinit var listVacancy: List<Vacancy?>
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -59,7 +62,8 @@ class VacanciesFragment: Fragment(),
 
     private val vacancyObserver = Observer<List<Vacancy?>> {
         Log.d("VACANCIES", it.toString())
-        vacanciesAdapter.setList(it)
+        vacanciesAdapter.setList(it.subList(0, 3))
+        VACANCY_STATIC = it.subList(0, 3)
     }
 
     private val statusObserver = Observer<Boolean> {

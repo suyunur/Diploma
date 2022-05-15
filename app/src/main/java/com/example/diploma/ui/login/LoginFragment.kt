@@ -75,7 +75,7 @@ class LoginFragment : Fragment() {
         }
 
         binding.loginActionButton.setOnClickListener {
-            login()
+            openContainerFragment()
         }
     }
 

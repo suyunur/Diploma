@@ -4,9 +4,12 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
+import com.example.diploma.data.COMPANY_NAMES
+import com.example.diploma.data.IMAGE_INDEX
+import com.example.diploma.data.VACANCY_IMAGES
 import com.example.diploma.data.model.Vacancy
 import com.example.diploma.databinding.ItemVacancyBinding
+import java.lang.Exception
 
 
 class VacanciesAdapter(
@@ -14,6 +17,7 @@ class VacanciesAdapter(
 ) : RecyclerView.Adapter<VacanciesAdapter.ViewHolder>() {
 
     var vacancies = mutableListOf<Vacancy?>()
+    var ind = -1
 
     @SuppressLint("NotifyDataSetChanged")
     fun setList(vacancies: List<Vacancy?>) {
@@ -33,18 +37,26 @@ class VacanciesAdapter(
         fun bind(vacancy: Vacancy) = with(binding) {
             root.setOnClickListener {
                 listener.onClick(vacancy)
+                IMAGE_INDEX = layoutPosition
             }
 
-            vacancyTitle.text = vacancy.title
-            companyName.text = vacancy.companyName
-            vacancyDetail.text = "${vacancy.location} - ${vacancy.jobType}"
-            salary.text = vacancy.final_salary.toString()
-
-            Glide
-                .with(vacancyImage.context)
-                .load(vacancy.imageUrl)
-                .centerCrop()
-                .into(vacancyImage)
+            try {
+                vacancyTitle.text = vacancy.title
+                ind += 1
+                companyName.text = COMPANY_NAMES[ind]
+                var job = ""
+                if (vacancy.jobType == "INTERNSHIP") {
+                    job = "Internship"
+                } else if (vacancy.jobType == "FULL_TIME") {
+                    job = "Full TIme"
+                }
+                vacancyDetail.text = "${vacancy.location} - $job"
+                val salaryText = vacancy.final_salary.toString()
+                salary.text = salaryText.substring(0, salaryText.lastIndexOf(".")) + " KZT"
+                VACANCY_IMAGES[layoutPosition]?.let { vacancyImage.setImageResource(it) }
+            } catch (e: Exception) {
+                print(e)
+            }
         }
 
     }

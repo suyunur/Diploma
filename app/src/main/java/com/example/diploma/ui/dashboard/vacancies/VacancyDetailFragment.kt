@@ -1,5 +1,6 @@
 package com.example.diploma.ui.dashboard.vacancies
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -10,6 +11,9 @@ import androidx.fragment.app.DialogFragment
 import com.bumptech.glide.Glide
 import com.example.diploma.R
 import com.example.diploma.data.CHOSEN_VACANCY
+import com.example.diploma.data.COMPANY_NAMES
+import com.example.diploma.data.IMAGE_INDEX
+import com.example.diploma.data.VACANCY_IMAGES
 import com.example.diploma.databinding.DiplomaFragmentVacancyDetailBinding
 
 
@@ -53,19 +57,20 @@ class VacancyDetailFragment: DialogFragment() {
         return binding.root
     }
 
+    @SuppressLint("SetTextI18n")
     private fun fillVacancyDetail() {
         CHOSEN_VACANCY?.apply {
 
-            Glide
-                .with(binding.vacancyImage.context)
-                .load(imageUrl)
-                .centerCrop()
-                .into(binding.vacancyImage)
+            VACANCY_IMAGES[IMAGE_INDEX!!]?.let { binding.vacancyImage.setImageResource(it) }
 
             binding.vacancyTitle.text = title
-            binding.companyName.text = companyName
-            binding.vacancySalary.text = final_salary.toString()
-            binding.vacancyJobType.text = jobType
+            binding.companyName.text = COMPANY_NAMES[IMAGE_INDEX!!]
+            binding.vacancySalary.text = final_salary.toString().substring(0, final_salary.toString().lastIndexOf(".")) + " KZT"
+            when (jobType) {
+                "INTERNSHIP" -> binding.vacancyJobType.text = "Internship"
+                "FULL_TIME" -> binding.vacancyJobType.text = "Full Time"
+            }
+
             binding.vacancyCompanyLocation.text = location
 
             binding.requirements.adapter = requirementsAdapter

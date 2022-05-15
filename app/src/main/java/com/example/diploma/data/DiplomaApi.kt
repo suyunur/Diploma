@@ -1,16 +1,13 @@
 package com.example.diploma.data
 
-import com.example.diploma.data.model.News
-import com.example.diploma.data.model.User
-import com.example.diploma.data.model.Vacancy
+import com.example.diploma.data.model.*
 import com.example.diploma.data.requestBody.LoginRequestBody
 import com.example.diploma.data.requestBody.UserRequestBody
 import com.example.diploma.data.responseBody.AuthResponse
-import com.example.diploma.data.responseBody.MainResponse
-import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.Path
 
 
 interface DiplomaApi {
@@ -22,7 +19,7 @@ interface DiplomaApi {
     suspend fun login(@Body user: LoginRequestBody): AuthResponse?
 
     @GET("recs/")
-    suspend fun getNews(): Result<List<News>?>
+    suspend fun getNews(): List<News?>
 
     @GET("vacancies/")
     suspend fun getVacancies(): List<Vacancy?>
@@ -30,4 +27,17 @@ interface DiplomaApi {
     @GET("me/")
     suspend fun getUserInfo(): User
 
+    @GET("roadmaps/")
+    suspend fun getRoadmaps(): List<Roadmap>
+
+    @GET("roadmaps/{spec_id}/{tech_id}/")
+    suspend fun getTopics(
+        @Path("id") roadmapId: Int,
+        @Path("id") techId: Int
+    ): List<Topic>
+
+    @GET("roadmaps/{spec_id}/")
+    suspend fun getTechs(
+        @Path("id") roadmapId: Int
+    ): List<Technology>
 }
