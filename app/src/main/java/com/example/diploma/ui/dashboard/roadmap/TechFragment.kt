@@ -6,13 +6,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.diploma.R
+import androidx.lifecycle.Observer
+import com.example.diploma.data.model.Technology
 import com.example.diploma.databinding.DiplomaLayoutTechnologiesBinding
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class TechFragment: Fragment() {
+class TechFragment: Fragment(), TechAdapter.ClickListener {
 
     private var _binding: DiplomaLayoutTechnologiesBinding? = null
     private val binding get() = _binding!!
+
+    private val viewModel: RoadmapViewModel by viewModel()
+
+    private lateinit var techAdapter: TechAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -30,21 +36,34 @@ class TechFragment: Fragment() {
 
         binding.topPanel.title.text = "Backend"
 
-        fillTechLayouts()
+        binding.techRecycler.adapter = techAdapter
+
+        setObservers()
+
+        viewModel.getTechs()
     }
 
-    @SuppressLint("SetTextI18n")
-    private fun fillTechLayouts() {
-        binding.djangoTech.roadmapImage.setImageResource(R.mipmap.ic_django)
-        binding.djangoTech.roadmapText.text = "Django"
+    private fun setObservers() {
+        viewModel.techsLiveData.observe(viewLifecycleOwner, techsObserver)
+        viewModel.loadLiveData.observe(viewLifecycleOwner, loadObserver)
+    }
 
-        binding.goTech.roadmapImage.setImageResource(R.mipmap.ic_golang)
-        binding.goTech.roadmapText.text = "GO lang"
+    private val techsObserver = Observer<List<Technology>> {
+        techAdapter.setList(it)
+    }
 
-        binding.djangoTech.root.setOnClickListener {
-            val dialog = TopicsFragment.newInstance()
-            dialog.show(parentFragmentManager, dialog::class.qualifiedName)
+    private val loadObserver = Observer<Boolean> {
+        if (it) {
+            binding.bar.visibility = View.VISIBLE
+            binding.techRecycler.visibility = View.GONE
+        } else {
+            binding.bar.visibility = View.GONE
+            binding.techRecycler.visibility = View.VISIBLE
         }
+    }
+
+    override fun onClick(tech: Technology) {
+
     }
 
 }

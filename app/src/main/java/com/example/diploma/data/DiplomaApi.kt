@@ -4,10 +4,7 @@ import com.example.diploma.data.model.*
 import com.example.diploma.data.requestBody.LoginRequestBody
 import com.example.diploma.data.requestBody.UserRequestBody
 import com.example.diploma.data.responseBody.AuthResponse
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Path
+import retrofit2.http.*
 
 
 interface DiplomaApi {
@@ -38,6 +35,6 @@ interface DiplomaApi {
 
     @GET("roadmaps/{spec_id}/")
     suspend fun getTechs(
-        @Path("id") roadmapId: Int
+        @Path("spec_id") roadmapId: Int
     ): List<Technology>
 }

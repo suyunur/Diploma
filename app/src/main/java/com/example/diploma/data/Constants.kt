@@ -9,6 +9,8 @@ internal var TOPIC_NAME: String? = null
 
 internal var CHOSEN_ROADMAP: String? = null
 
+internal var TOPIC_ID: Int? = null
+
 internal var LAST_PAGE: Int? = null
 
 internal var PROGRESS: String? = null
@@ -36,5 +38,3 @@ internal var VACANCY_FILTERS: List<String?> = listOf<String?>("All Type", "Inter
 internal var ROADMAP_ID: Int? = 0
 
 internal var TECHNOLOGY_ID: Int? = 0
-
-internal var TOPIC_ID: Int? = 0

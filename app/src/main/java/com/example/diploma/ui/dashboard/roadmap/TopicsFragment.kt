@@ -1,13 +1,14 @@
 package com.example.diploma.ui.dashboard.roadmap
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.Observer
 import com.example.diploma.R
+import com.example.diploma.data.ROADMAP_ID
+import com.example.diploma.data.TOPIC_ID
 import com.example.diploma.data.TOPIC_NAME
 import com.example.diploma.data.model.Topic
 import com.example.diploma.databinding.DiplomaFragmentTopicsBinding
@@ -51,7 +52,7 @@ class TopicsFragment: DialogFragment(), TopicAdapter.ClickListener {
 
         setObservers()
 
-        viewModel.getTopics()
+        viewModel.getTopics(ROADMAP_ID, )
     }
 
     private fun setObservers() {
@@ -61,7 +62,6 @@ class TopicsFragment: DialogFragment(), TopicAdapter.ClickListener {
 
     private val topicObserver = Observer<List<Topic>> {
         topicAdapter.setList(it)
-        Log.d("TOPICS", it.toString())
     }
 
     private val loadObserver = Observer<Boolean> {
@@ -79,6 +79,7 @@ class TopicsFragment: DialogFragment(), TopicAdapter.ClickListener {
 
     override fun onClick(topic: Topic) {
         TOPIC_NAME = topic.name
+        TOPIC_ID = topic.id
         val dialog = MaterialFragment.newInstance()
         dialog.show(parentFragmentManager, dialog::class.qualifiedName)
     }
