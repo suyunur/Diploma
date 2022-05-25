@@ -29,12 +29,19 @@ interface DiplomaApi {
 
     @GET("roadmaps/{spec_id}/{tech_id}/")
     suspend fun getTopics(
-        @Path("id") roadmapId: Int,
-        @Path("id") techId: Int
+        @Path("spec_id") roadmapId: Int,
+        @Path("tech_id") techId: Int
     ): List<Topic>
 
     @GET("roadmaps/{spec_id}/")
     suspend fun getTechs(
         @Path("spec_id") roadmapId: Int
     ): List<Technology>
+
+    @GET("roadmaps/{spec_id}/{tech_id}/{topic_id}")
+    suspend fun getMaterial(
+        @Path("spec_id") roadmapId: Int,
+        @Path("tech_id") techId: Int,
+        @Path("topic_id") topicId: Int
+    ): Material
 }

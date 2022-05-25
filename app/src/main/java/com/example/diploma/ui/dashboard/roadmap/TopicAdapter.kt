@@ -2,7 +2,6 @@ package com.example.diploma.ui.dashboard.roadmap
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.diploma.data.model.Topic
@@ -32,11 +31,9 @@ class TopicAdapter(
         fun bind(topic: Topic) = with(binding) {
             root.setOnClickListener {
                 listener.onClick(topic)
-
-                topicName.text = topic.name
-                topicNum.text = (layoutPosition + 1).toString()
-                topicStatusImage.visibility = View.GONE
             }
+            topicName.text = topic.name
+            topicNum.text = "Chapter ${(layoutPosition + 1)}"
         }
     }
 

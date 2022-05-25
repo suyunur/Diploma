@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.diploma.data.model.Material
 import com.example.diploma.data.model.Roadmap
 import com.example.diploma.data.model.Technology
 import com.example.diploma.data.model.Topic
@@ -30,6 +31,10 @@ class RoadmapViewModel(
         get() = _loadLiveData
     private val _loadLiveData = MutableLiveData<Boolean>()
 
+    val materialLiveData: LiveData<Material>
+        get() = _materialLiveData
+    private val _materialLiveData = MutableLiveData<Material>()
+
     fun getTopics() = viewModelScope.launch {
         _loadLiveData.value = true
 
@@ -50,6 +55,14 @@ class RoadmapViewModel(
         _loadLiveData.value = true
 
         _techsLiveData.value = dashboardRepository.getTechs()
+
+        _loadLiveData.value = false
+    }
+
+    fun getMaterial() = viewModelScope.launch {
+        _loadLiveData.value = true
+
+        _materialLiveData.value = dashboardRepository.getMaterial()
 
         _loadLiveData.value = false
     }

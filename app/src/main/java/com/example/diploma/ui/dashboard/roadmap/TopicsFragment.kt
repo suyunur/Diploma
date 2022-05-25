@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.Observer
 import com.example.diploma.R
-import com.example.diploma.data.ROADMAP_ID
 import com.example.diploma.data.TOPIC_ID
 import com.example.diploma.data.TOPIC_NAME
 import com.example.diploma.data.model.Topic
@@ -52,7 +51,7 @@ class TopicsFragment: DialogFragment(), TopicAdapter.ClickListener {
 
         setObservers()
 
-        viewModel.getTopics(ROADMAP_ID, )
+        viewModel.getTopics()
     }
 
     private fun setObservers() {

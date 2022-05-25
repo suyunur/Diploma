@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".ui.splash.NewActivity">
 
-
     <include layout="@layout/content_new"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

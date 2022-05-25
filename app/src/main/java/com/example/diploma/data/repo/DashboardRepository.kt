@@ -3,6 +3,7 @@ package com.example.diploma.data.repo
 import com.example.diploma.data.DiplomaApi
 import com.example.diploma.data.ROADMAP_ID
 import com.example.diploma.data.TECHNOLOGY_ID
+import com.example.diploma.data.TOPIC_ID
 import com.example.diploma.data.model.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -42,6 +43,12 @@ class DashboardRepository(
     suspend fun getTechs(): List<Technology> {
         return withContext(Dispatchers.IO) {
             api.getTechs(ROADMAP_ID!!)
+        }
+    }
+
+    suspend fun getMaterial(): Material {
+        return withContext(Dispatchers.IO) {
+            api.getMaterial(ROADMAP_ID!!, TECHNOLOGY_ID!!, TOPIC_ID!!)
         }
     }
 

@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import com.example.diploma.data.TECHNOLOGY_ID
 import com.example.diploma.data.model.Technology
 import com.example.diploma.databinding.DiplomaLayoutTechnologiesBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -36,6 +37,7 @@ class TechFragment: Fragment(), TechAdapter.ClickListener {
 
         binding.topPanel.title.text = "Backend"
 
+        techAdapter = TechAdapter(this)
         binding.techRecycler.adapter = techAdapter
 
         setObservers()
@@ -63,7 +65,9 @@ class TechFragment: Fragment(), TechAdapter.ClickListener {
     }
 
     override fun onClick(tech: Technology) {
-
+        TECHNOLOGY_ID = tech.id
+        val dialog = TopicsFragment.newInstance()
+        dialog.show(parentFragmentManager, dialog::class.qualifiedName)
     }
 
 }
