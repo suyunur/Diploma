@@ -11,16 +11,16 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.navigation.fragment.findNavController
 import com.example.diploma.R
-import com.example.diploma.data.SKILL
-import com.example.diploma.data.SKILLS
 import com.example.diploma.databinding.DiplomaFragmentProfileBinding
 import org.koin.android.ext.android.inject
-
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ProfileFragment: Fragment() {
 
     private var _binding: DiplomaFragmentProfileBinding? = null
     private val binding get() = _binding!!
+
+    private val viewModel: ProfileViewModel by viewModel()
 
     private val sharedPreferences: SharedPreferences by inject()
 
@@ -33,6 +33,8 @@ class ProfileFragment: Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = DiplomaFragmentProfileBinding.inflate(inflater, container, false)
+
+        viewModel.getUser()
 
         binding.topPanel.title.text = "My Profile"
         binding.topPanel.title.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
@@ -51,14 +53,14 @@ class ProfileFragment: Fragment() {
 
         studyAdapter = StudyAdapter()
         binding.progressRecyclerView.adapter = studyAdapter
-
-        if (!SKILL.isNullOrEmpty() && !SKILLS.isNullOrEmpty()) {
-            binding.skills.visibility = View.VISIBLE
-            binding.skill1.skillName.text = "Python"
-            binding.skill2.skillName.text = "Django"
-            binding.progressRecyclerView.visibility = View.VISIBLE
-            studyAdapter.setList(listOf("12"))
-        }
+//
+//        if (!SKILL.isNullOrEmpty() && !SKILLS.isNullOrEmpty()) {
+//            binding.skills.visibility = View.VISIBLE
+//            binding.skill1.skillName.text = "Python"
+//            binding.skill2.skillName.text = "Django"
+//            binding.progressRecyclerView.visibility = View.VISIBLE
+//            studyAdapter.setList(listOf("12"))
+//        }
     }
 
     private fun logout() {

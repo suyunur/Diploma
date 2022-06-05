@@ -7,6 +7,7 @@ import com.example.diploma.data.DiplomaApi
 import com.example.diploma.data.repo.AuthRepository
 import com.example.diploma.data.repo.DashboardRepository
 import com.example.diploma.ui.dashboard.home.HomeViewModel
+import com.example.diploma.ui.dashboard.profile.ProfileViewModel
 import com.example.diploma.ui.dashboard.roadmap.RoadmapViewModel
 import com.example.diploma.ui.dashboard.vacancies.VacanciesViewModel
 import com.example.diploma.ui.login.AuthViewModel
@@ -36,6 +37,7 @@ val vmModule = module {
     viewModel { HomeViewModel(get()) }
     viewModel { VacanciesViewModel(get()) }
     viewModel { RoadmapViewModel(get()) }
+    viewModel { ProfileViewModel(get()) }
 }
 
 private fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {

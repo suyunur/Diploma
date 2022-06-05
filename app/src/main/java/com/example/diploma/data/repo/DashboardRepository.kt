@@ -13,6 +13,12 @@ class DashboardRepository(
     private val api: DiplomaApi
 ): MainRepository() {
 
+    suspend fun getUser(): User {
+        return withContext(Dispatchers.IO) {
+            api.getUserInfo()
+        }
+    }
+
     suspend fun getNews(): List<News?> {
         return withContext(Dispatchers.IO) {
             api.getNews()
