@@ -6,5 +6,5 @@ data class Technology(
     val id: Int?,
     val name: String?,
     val description: String?,
-    val subtopics: List<Subtopic>?
-): Serializable
+    val image_url: String?
+) : Serializable

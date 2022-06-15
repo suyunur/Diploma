@@ -15,7 +15,7 @@ import kotlinx.coroutines.launch
 @DelicateCoroutinesApi
 class AuthViewModel(
     private val authRepository: AuthRepository,
-): ViewModel() {
+) : ViewModel() {
 
     val authLiveData: LiveData<AuthResponse?>
         get() = _authLiveData
@@ -34,7 +34,7 @@ class AuthViewModel(
     ) = viewModelScope.launch {
         _loadLiveData.value = true
 
-        authRepository.register(
+        val response = authRepository.register(
             UserRequestBody(
                 first_name = name,
                 last_name = surname,
@@ -42,10 +42,7 @@ class AuthViewModel(
                 password = password
             )
         )
-        login(
-            email = email,
-            password = password
-        )
+        _authLiveData.value = response
 
         _loadLiveData.value = false
     }

@@ -10,7 +10,7 @@ import kotlinx.coroutines.launch
 
 class VacanciesViewModel(
     private val dashboardRepository: DashboardRepository
-): ViewModel() {
+) : ViewModel() {
 
     val vacanciesLiveData: LiveData<List<Vacancy?>>
         get() = _vacanciesLiveData
@@ -35,31 +35,31 @@ class VacanciesViewModel(
 
             "Internship" -> {
                 vacancies?.filter {
-                    it?.jobType == "INTERNSHIP"
+                    it?.employment_type == "INTERNSHIP"
                 }
             }
 
             "Full Time" -> {
                 vacancies?.filter {
-                    it?.jobType == "FULL TIME"
+                    it?.employment_type == "FULL_TIME"
                 }
             }
 
             "Part Time" -> {
                 vacancies?.filter {
-                    it?.jobType == "PART TIME"
+                    it?.employment_type == "PART TIME"
                 }
             }
 
             "Project Work" -> {
                 vacancies?.filter {
-                    it?.jobType == "PROJECT WORK"
+                    it?.employment_type == "PROJECT WORK"
                 }
             }
 
             "Volunteering" -> {
                 vacancies?.filter {
-                    it?.jobType == "Volunteering".uppercase()
+                    it?.employment_type == "Volunteering".uppercase()
                 }
             }
 

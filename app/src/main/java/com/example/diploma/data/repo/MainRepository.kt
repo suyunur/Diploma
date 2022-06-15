@@ -2,7 +2,6 @@ package com.example.diploma.data.repo
 
 import com.example.diploma.data.responseBody.MainResponse
 import retrofit2.Response
-import java.lang.Exception
 
 
 open class MainRepository {

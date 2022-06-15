@@ -46,128 +46,144 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <androidx.core.widget.NestedScrollView
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:fillViewport="true">
+        android:layout_height="wrap_content">
 
-        <LinearLayout
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginStart="6dp"
-                android:layout_marginEnd="30dp"
-                android:layout_marginTop="14dp"
-                app:cardCornerRadius="20dp">
-
-                <ImageView
-                    android:layout_width="315dp"
-                    android:layout_height="160dp"
-                    tools:src="@color/purple"
-                    />
-
-            </androidx.cardview.widget.CardView>
-
-            <TextView
-                android:id="@+id/chapterNum"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                tools:text="Chapter 1"
-                android:textSize="32sp"
-                android:textColor="@color/black"
-                android:fontFamily="@font/source_sans_pro_bold"
-                android:layout_marginTop="10dp"
-                />
-
-            <TextView
-                android:id="@+id/chapterTitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                tools:text="Introduction to the PHP course for beginners"
-                android:textSize="16sp"
-                android:textColor="@color/black"
-                android:fontFamily="@font/source_sans_pro_regular"
-                />
-
-            <TextView
-                android:id="@+id/chapterText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:layout_marginEnd="24dp"
-                android:gravity="center"
-                android:background="@drawable/bg_vacancy"
-                android:padding="10dp"
-                tools:text="PHP is one of the most common web development languages. It is used to create websites and web applications of any complexity. from landing pages and blogs to online stores and browser games. Its advantages are its broad capabilities and security due to the closed source code."
-                android:textSize="16sp"
-                android:textColor="@color/black"
-                android:fontFamily="@font/source_sans_pro_regular"
-                />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/resources"
-                android:textSize="16sp"
-                android:textColor="@color/white"
-                android:fontFamily="@font/source_sans_pro_semibold"
-                android:background="@drawable/bg_res"
-                android:layout_marginTop="12dp"
-                android:paddingTop="14dp"
-                android:paddingBottom="14dp"
-                android:paddingStart="12dp"
-                android:paddingEnd="12dp"
-                />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/linksRecyclerView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_gravity="center"
-                tools:listitem="@layout/item_link"
-                tools:itemCount="3"
-                />
+            android:fillViewport="true">
 
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                android:orientation="horizontal"
-                android:background="@drawable/bg_next"
-                android:layout_gravity="end"
-                android:layout_marginEnd="28dp"
-                android:layout_marginBottom="32dp"
-                android:layout_marginTop="18dp"
-                android:padding="4dp"
-                android:gravity="center">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/nextButton"
+                <androidx.cardview.widget.CardView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="5dp"
-                    android:text="@string/next"
-                    android:textSize="16sp"
-                    android:textColor="@color/white"
+                    android:layout_marginTop="14dp"
+                    app:cardCornerRadius="20dp">
+
+                    <ImageView
+                        android:id="@+id/materialImageView"
+                        android:layout_width="315dp"
+                        android:layout_height="160dp"
+                        tools:src="@color/purple"
+                        android:layout_gravity="center_horizontal"
+                        />
+
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:id="@+id/chapterNum"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    tools:text="Chapter 1"
+                    android:textSize="32sp"
+                    android:textColor="@color/black"
                     android:fontFamily="@font/source_sans_pro_bold"
+                    android:layout_marginTop="10dp"
                     />
 
-                <ImageView
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:src="@drawable/ic_next"
+                <TextView
+                    android:id="@+id/chapterTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    tools:text="Introduction to the PHP course for beginners"
+                    android:textSize="16sp"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/source_sans_pro_regular"
                     />
+
+                <TextView
+                    android:id="@+id/chapterText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginEnd="24dp"
+                    android:layout_marginStart="24dp"
+                    android:gravity="center_horizontal"
+                    android:background="@drawable/bg_vacancy"
+                    android:padding="10dp"
+                    tools:text="PHP is one of the most common web development languages. It is used to create websites and web applications of any complexity. from landing pages and blogs to online stores and browser games. Its advantages are its broad capabilities and security due to the closed source code."
+                    android:textSize="16sp"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/source_sans_pro_regular"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/resources"
+                    android:textSize="16sp"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/source_sans_pro_semibold"
+                    android:background="@drawable/bg_res"
+                    android:layout_marginTop="12dp"
+                    android:paddingTop="14dp"
+                    android:paddingBottom="14dp"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/linksRecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="14dp"
+                    android:layout_marginEnd="12dp"
+                    android:layout_marginTop="12dp"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:itemCount="2"
+                    tools:listitem="@layout/item_link"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:orientation="horizontal"
+                    android:background="@drawable/bg_next"
+                    android:layout_gravity="end"
+                    android:layout_marginEnd="28dp"
+                    android:layout_marginBottom="32dp"
+                    android:layout_marginTop="18dp"
+                    android:padding="4dp"
+                    android:gravity="center">
+
+                    <TextView
+                        android:id="@+id/nextButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="5dp"
+                        android:text="@string/next"
+                        android:textSize="16sp"
+                        android:textColor="@color/white"
+                        android:fontFamily="@font/source_sans_pro_bold"
+                        />
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:src="@drawable/ic_next"
+                        />
+
+                </LinearLayout>
 
             </LinearLayout>
 
-        </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+        <ProgressBar
+            android:id="@+id/bar"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:indeterminateTint="@color/black"
+            android:visibility="gone"/>
 
-    </androidx.core.widget.NestedScrollView>
-
+    </FrameLayout>
 </LinearLayout>

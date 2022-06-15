@@ -8,4 +8,4 @@ data class AuthResponse(
     val refresh: String?,
     @SerializedName("access")
     val access: String?
-): Serializable
+) : Serializable

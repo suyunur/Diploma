@@ -11,13 +11,21 @@ import kotlinx.coroutines.launch
 
 class HomeViewModel(
     private val dashboardRepository: DashboardRepository
-): ViewModel() {
+) : ViewModel() {
 
     val newsLiveData: LiveData<List<News?>>
         get() = _newsLiveData
     private val _newsLiveData = MutableLiveData<List<News?>>()
 
+    val loadLiveData: LiveData<Boolean>
+        get() = _loadLiveData
+    private val _loadLiveData = MutableLiveData<Boolean>()
+
     fun getNews() = viewModelScope.launch {
-        _newsLiveData.value = dashboardRepository.getNews().getOrNull()
+        _loadLiveData.value = true
+
+        _newsLiveData.value = dashboardRepository.getNews()
+
+        _loadLiveData.value = false
     }
 }

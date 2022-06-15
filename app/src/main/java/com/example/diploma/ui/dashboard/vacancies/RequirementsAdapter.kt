@@ -4,26 +4,26 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.diploma.data.model.Skill
+import com.example.diploma.data.model.Vacancy
 import com.example.diploma.databinding.ItemRequirementBinding
 
 
 class RequirementsAdapter
     : RecyclerView.Adapter<RequirementsAdapter.ViewHolder>() {
 
-    private var skills = mutableListOf<Skill?>()
+    private var skills = mutableListOf<Vacancy.Skill?>()
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setList(skills: List<Skill?>) {
+    fun setList(skills: List<Vacancy.Skill?>) {
         this.skills = skills.toMutableList()
         notifyDataSetChanged()
     }
 
     inner class ViewHolder(
         private val binding: ItemRequirementBinding
-    ): RecyclerView.ViewHolder(binding.root) {
-        fun bind(skill: Skill) = with(binding) {
-            text.text = skill.name
+    ) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(skill: Vacancy.Skill?) = with(binding) {
+            text.text = skill?.name
         }
     }
 

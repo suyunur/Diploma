@@ -5,7 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.commit
 import com.example.diploma.R
+import com.example.diploma.data.LAST_PAGE
 import com.example.diploma.databinding.DiplomaContainerFragmentBinding
 import com.example.diploma.ui.dashboard.home.HomeFragment
 import com.example.diploma.ui.dashboard.profile.ProfileFragment
@@ -13,10 +15,12 @@ import com.example.diploma.ui.dashboard.roadmap.RoadmapFragment
 import com.example.diploma.ui.dashboard.vacancies.VacanciesFragment
 
 
-class ContainerFragment: Fragment() {
+class ContainerFragment : Fragment() {
 
     private var _binding: DiplomaContainerFragmentBinding? = null
     private val binding get() = _binding!!
+
+    private var lastPage = 0
 
     private lateinit var homeFragment: HomeFragment
     private lateinit var profileFragment: ProfileFragment
@@ -38,6 +42,8 @@ class ContainerFragment: Fragment() {
 
         binding.bottomNavigation.itemIconTintList = null
 
+        binding.bottomNavigation.selectedItemId = R.id.vacancies_page
+
         setUpBottomNavigationMenu()
     }
 
@@ -48,23 +54,26 @@ class ContainerFragment: Fragment() {
         roadmapFragment = RoadmapFragment()
 
         replaceFragment(vacanciesFragment)
-        binding.bottomNavigation.selectedItemId = R.id.vacancies_page
 
         binding.bottomNavigation.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.home_page -> {
+                    lastPage = 1
                     replaceFragment(homeFragment)
                     true
                 }
                 R.id.profile_page -> {
+                    lastPage = 2
                     replaceFragment(profileFragment)
                     true
                 }
                 R.id.vacancies_page -> {
+                    lastPage = 3
                     replaceFragment(vacanciesFragment)
                     true
                 }
                 R.id.roadmap_page -> {
+                    lastPage = 4
                     replaceFragment(roadmapFragment)
                     true
                 }
@@ -74,10 +83,21 @@ class ContainerFragment: Fragment() {
     }
 
     private fun replaceFragment(fragment: Fragment) {
-        parentFragmentManager.beginTransaction().replace(
-            R.id.container,
-            fragment,
-            fragment.tag
-        ).commit()
+        parentFragmentManager.commit {
+            replace(
+                R.id.container,
+                fragment,
+                fragment.tag
+            )
+            addToBackStack(null)
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        if (LAST_PAGE == 4) {
+            binding.bottomNavigation.selectedItemId = R.id.roadmap_page
+        }
     }
 }

@@ -7,4 +7,4 @@ data class UserRequestBody(
     var last_name: String,
     var email: String,
     var password: String
-): Serializable
+) : Serializable

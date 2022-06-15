@@ -7,6 +7,8 @@ import com.example.diploma.data.DiplomaApi
 import com.example.diploma.data.repo.AuthRepository
 import com.example.diploma.data.repo.DashboardRepository
 import com.example.diploma.ui.dashboard.home.HomeViewModel
+import com.example.diploma.ui.dashboard.profile.ProfileViewModel
+import com.example.diploma.ui.dashboard.roadmap.RoadmapViewModel
 import com.example.diploma.ui.dashboard.vacancies.VacanciesViewModel
 import com.example.diploma.ui.login.AuthViewModel
 import kotlinx.coroutines.DelicateCoroutinesApi
@@ -34,6 +36,8 @@ val vmModule = module {
     viewModel { AuthViewModel(get()) }
     viewModel { HomeViewModel(get()) }
     viewModel { VacanciesViewModel(get()) }
+    viewModel { RoadmapViewModel(get()) }
+    viewModel { ProfileViewModel(get()) }
 }
 
 private fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
@@ -44,26 +48,27 @@ private fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
         .build()
 }
 
-private fun provideSharedPreferences(context: Context): SharedPreferences? = context.getSharedPreferences("pref", Context.MODE_PRIVATE)
+private fun provideSharedPreferences(context: Context): SharedPreferences? =
+    context.getSharedPreferences("pref", Context.MODE_PRIVATE)
 
 private fun provideApi(retrofit: Retrofit): DiplomaApi =
     retrofit.create(DiplomaApi::class.java)
 
-private fun provideOKHttp(sharedPreferences: SharedPreferences, context: Context): OkHttpClient{
-
+private fun provideOKHttp(sharedPreferences: SharedPreferences, context: Context): OkHttpClient {
     return OkHttpClient()
         .newBuilder()
         .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
         .addInterceptor { chain ->
-            val request = chain
-                .request()
-                .newBuilder()
-                .addHeader(
-                    "authToken",
-                    "bearer ${sharedPreferences.getString(context.getString(R.string.auth_token), null)}"
+            val request = chain.request().newBuilder()
+            if (chain.request().url.toString()
+                    .contains("http://demo-it-bilim.herokuapp.com/api/")
+            ) {
+                request.addHeader(
+                    "Authorization",
+                    "Bearer ${sharedPreferences.getString(context.getString(R.string.user_id), "")}"
                 )
-                .build()
-            chain.proceed(request)
+            }
+            chain.proceed(request.build())
         }
         .build()
 }

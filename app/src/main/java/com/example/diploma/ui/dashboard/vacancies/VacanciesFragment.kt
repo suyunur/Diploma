@@ -1,7 +1,6 @@
 package com.example.diploma.ui.dashboard.vacancies
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,9 +13,9 @@ import com.example.diploma.databinding.DiplomaFragmentVacanciesBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
-class VacanciesFragment: Fragment(),
+class VacanciesFragment : Fragment(),
     VacanciesAdapter.ClickListener,
-    FilterAdapter.ClickListener{
+    FilterAdapter.ClickListener {
 
     private var _binding: DiplomaFragmentVacanciesBinding? = null
     private val binding get() = _binding!!
@@ -58,7 +57,6 @@ class VacanciesFragment: Fragment(),
     }
 
     private val vacancyObserver = Observer<List<Vacancy?>> {
-        Log.d("VACANCIES", it.toString())
         vacanciesAdapter.setList(it)
     }
 

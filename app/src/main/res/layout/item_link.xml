@@ -29,6 +29,7 @@
         android:paddingEnd="6dp">
 
         <TextView
+            android:id="@+id/linkName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent"
@@ -41,6 +42,7 @@
             />
 
         <ImageView
+            android:id="@+id/openBtn"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:src="@drawable/ic_open_link"

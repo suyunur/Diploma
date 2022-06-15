@@ -24,4 +24,5 @@
     <color name="red_light">#FFDEDE</color>
     <color name="orange">#FFB110</color>
     <color name="orange_light">#FFFBEC</color>
+    <color name="blue_light">#CEDAFF</color>
 </resources>

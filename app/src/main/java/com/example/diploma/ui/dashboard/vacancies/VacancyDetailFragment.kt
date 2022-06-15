@@ -1,5 +1,6 @@
 package com.example.diploma.ui.dashboard.vacancies
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -13,7 +14,7 @@ import com.example.diploma.data.CHOSEN_VACANCY
 import com.example.diploma.databinding.DiplomaFragmentVacancyDetailBinding
 
 
-class VacancyDetailFragment: DialogFragment() {
+class VacancyDetailFragment : DialogFragment() {
 
     companion object {
 
@@ -47,12 +48,13 @@ class VacancyDetailFragment: DialogFragment() {
         fillVacancyDetail()
 
         binding.applyButton.setOnClickListener {
-            CHOSEN_VACANCY?.let { it1 -> openVacancyLink(it1.vacancyUrl) }
+            CHOSEN_VACANCY?.let { it1 -> openVacancyLink(it1.link) }
         }
 
         return binding.root
     }
 
+    @SuppressLint("SetTextI18n")
     private fun fillVacancyDetail() {
         CHOSEN_VACANCY?.apply {
 
@@ -63,9 +65,14 @@ class VacancyDetailFragment: DialogFragment() {
                 .into(binding.vacancyImage)
 
             binding.vacancyTitle.text = title
-            binding.companyName.text = companyName
+            binding.companyName.text = employer
             binding.vacancySalary.text = final_salary.toString()
-            binding.vacancyJobType.text = jobType
+                .substring(0, final_salary.toString().lastIndexOf(".")) + " KZT"
+            when (employment_type) {
+                "INTERNSHIP" -> binding.vacancyJobType.text = "Internship"
+                "FULL_TIME" -> binding.vacancyJobType.text = "Full Time"
+            }
+
             binding.vacancyCompanyLocation.text = location
 
             binding.requirements.adapter = requirementsAdapter

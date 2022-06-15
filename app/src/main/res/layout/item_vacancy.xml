@@ -27,11 +27,13 @@
         android:id="@+id/vacancyTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="20dp"
         android:fontFamily="@font/source_sans_pro_semibold"
         android:textColor="@color/black"
-        android:textSize="18sp"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toStartOf="@id/bookmark"
+        app:layout_constraintHorizontal_bias="0.081"
         app:layout_constraintStart_toEndOf="@id/vacancyImage"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Middle/Senior Python \nBackend developer" />
@@ -50,28 +52,28 @@
         android:id="@+id/companyName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
+        android:fontFamily="@font/source_sans_pro_regular"
         android:textColor="@color/gray7"
         android:textSize="12sp"
-        android:fontFamily="@font/source_sans_pro_regular"
         app:layout_constraintBottom_toTopOf="@id/vacancyDetail"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.041"
         app:layout_constraintStart_toEndOf="@id/vacancyImage"
         app:layout_constraintTop_toBottomOf="@+id/vacancyTitle"
-        tools:text="ONE Technologies"
-        />
+        tools:text="ONE Technologies" />
 
     <TextView
         android:id="@+id/vacancyDetail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
         android:textColor="@color/gray7"
         android:textSize="10sp"
-        tools:text="Almaty - Part time"
-        app:layout_constraintTop_toBottomOf="@id/companyName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.035"
         app:layout_constraintStart_toEndOf="@id/vacancyImage"
+        app:layout_constraintTop_toBottomOf="@id/companyName"
         tools:ignore="SmallSp"
-        />
+        tools:text="Almaty - Part time" />
 
     <TextView
         android:id="@+id/salary"

@@ -43,6 +43,11 @@
     <string name="vacancies">Vacancies</string>
     <string name="job_detail">Job Detail</string>
     <string name="resources">Resources for learning</string>
+    <string name="internship">Internship</string>
+    <string name="full_time">Full Time</string>
+    <string name="part_time">Part Time</string>
+    <string name="project_work">Project Work</string>
+    <string name="volunteering">Volunteering</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>
@@ -57,4 +62,5 @@
     <string name="requirements">Requirements</string>
     <string name="invalid_e_mail_or_password">Invalid e-mail or password</string>
     <string name="hello">Hello</string>
+    <string name="diploma_project">Diploma Project</string>
 </resources>

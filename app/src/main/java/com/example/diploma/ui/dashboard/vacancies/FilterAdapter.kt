@@ -11,7 +11,7 @@ import com.example.diploma.databinding.ItemFilerBinding
 
 class FilterAdapter(
     private val listener: ClickListener
-) : RecyclerView.Adapter<FilterAdapter.ViewHolder>(){
+) : RecyclerView.Adapter<FilterAdapter.ViewHolder>() {
 
     interface ClickListener {
         fun onFilter(string: String)
@@ -22,7 +22,7 @@ class FilterAdapter(
 
     inner class ViewHolder(
         private val binding: ItemFilerBinding
-    ): RecyclerView.ViewHolder(binding.root) {
+    ) : RecyclerView.ViewHolder(binding.root) {
         @SuppressLint("NotifyDataSetChanged")
         fun bind(filter: String) = with(binding) {
             root.setOnClickListener {

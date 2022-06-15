@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.diploma.R
 import com.example.diploma.data.model.Vacancy
 import com.example.diploma.databinding.ItemVacancyBinding
 
@@ -36,9 +37,19 @@ class VacanciesAdapter(
             }
 
             vacancyTitle.text = vacancy.title
-            companyName.text = vacancy.companyName
-            vacancyDetail.text = "${vacancy.location} - ${vacancy.jobType}"
+            companyName.text = vacancy.employer
+            var jobType = ""
+            when (vacancy.employment_type) {
+                "INTERNSHIP" -> jobType = root.context.getString(R.string.internship)
+                "FULL_TIME" -> jobType = root.context.getString(R.string.full_time)
+                "PART_TIME" -> jobType = root.context.getString(R.string.part_time)
+                "PROJECT_WORK" -> jobType = root.context.getString(R.string.project_work)
+                "VOLUNTEERING" -> jobType = root.context.getString(R.string.volunteering)
+            }
+            vacancyDetail.text = "${vacancy.location} - $jobType"
             salary.text = vacancy.final_salary.toString()
+                .substring(0, vacancy.final_salary.toString().lastIndexOf(".")) + " KZT"
+
 
             Glide
                 .with(vacancyImage.context)

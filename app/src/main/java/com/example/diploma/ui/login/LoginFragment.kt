@@ -61,11 +61,10 @@ class LoginFragment : Fragment() {
     }
 
     private val tokenObserver = Observer<AuthResponse?> {
-        if (it == null) {
-            binding.errorLayout.visibility = View.VISIBLE
-        } else {
+        if (it.access != null) {
             viewModel.saveAuthResponse(it)
             openContainerFragment()
+            binding.errorLayout.visibility = View.VISIBLE
         }
     }
 
