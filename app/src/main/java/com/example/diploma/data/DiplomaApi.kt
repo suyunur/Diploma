@@ -5,7 +5,7 @@ import com.example.diploma.data.requestBody.LoginRequestBody
 import com.example.diploma.data.requestBody.UserRequestBody
 import com.example.diploma.data.requestBody.VacancyRequestBody
 import com.example.diploma.data.responseBody.AuthResponse
-import com.example.diploma.data.responseBody.RegisterResponse
+import com.example.diploma.data.responseBody.UserResponseBody
 import com.example.diploma.data.responseBody.TopicsResponseBody
 import retrofit2.http.*
 
@@ -13,10 +13,10 @@ import retrofit2.http.*
 interface DiplomaApi {
 
     @POST("register/")
-    suspend fun register(@Body user: UserRequestBody): RegisterResponse?
+    suspend fun register(@Body user: UserRequestBody): UserResponseBody?
 
     @POST("token/")
-    suspend fun login(@Body user: LoginRequestBody): AuthResponse?
+    suspend fun login(@Body user: LoginRequestBody): UserResponseBody?
 
     @GET("recs/")
     suspend fun getNews(): List<News?>

@@ -42,7 +42,7 @@ class ContainerFragment : Fragment() {
 
         binding.bottomNavigation.itemIconTintList = null
 
-        binding.bottomNavigation.selectedItemId = R.id.vacancies_page
+        binding.bottomNavigation.selectedItemId = R.id.home_page
 
         setUpBottomNavigationMenu()
     }
@@ -53,7 +53,7 @@ class ContainerFragment : Fragment() {
         vacanciesFragment = VacanciesFragment()
         roadmapFragment = RoadmapFragment()
 
-        replaceFragment(vacanciesFragment)
+        replaceFragment(homeFragment)
 
         binding.bottomNavigation.setOnItemSelectedListener {
             when (it.itemId) {

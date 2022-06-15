@@ -36,6 +36,8 @@ class TopicsFragment : DialogFragment(), TopicAdapter.ClickListener {
 
         setObservers()
 
+        viewModel.getTopics()
+
         return binding.root
     }
 

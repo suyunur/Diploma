@@ -97,6 +97,9 @@ class LoginFragment : Fragment() {
         binding.seePasswordButton.setOnClickListener {
             changePasswordVisibility()
         }
+        binding.forgotPasswordText.setOnClickListener {
+            openForgotPasswordFragment()
+        }
     }
 
     private fun login() {
@@ -127,6 +130,10 @@ class LoginFragment : Fragment() {
 
     private fun openContainerFragment() {
         findNavController().navigate(R.id.action_login_to_container)
+    }
+
+    private fun openForgotPasswordFragment() {
+        findNavController().navigate(R.id.action_login_to_forgot)
     }
 
     private fun hideErrorTexts() {

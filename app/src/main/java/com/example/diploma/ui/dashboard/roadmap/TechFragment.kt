@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.GridLayoutManager
 import com.example.diploma.data.CHOSEN_PROGRESS
 import com.example.diploma.data.CHOSEN_ROADMAP
 import com.example.diploma.data.CHOSEN_SECTION
@@ -41,8 +42,10 @@ class TechFragment : Fragment(), TechAdapter.ClickListener {
 
         binding.topPanel.title.text = CHOSEN_ROADMAP
 
+        val layoutManager = GridLayoutManager(requireContext(), 2)
         techAdapter = TechAdapter(this)
         binding.techRecycler.adapter = techAdapter
+        binding.techRecycler.layoutManager = layoutManager
 
         setObservers()
 

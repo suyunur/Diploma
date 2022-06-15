@@ -96,12 +96,10 @@ class RegisterFragment : Fragment() {
         val name = binding.nameEditText.text.toString()
         val surname = binding.surnameEditText.text.toString()
         val email = binding.emailEditText.text.toString()
-        val phone = binding.phoneNumberEditText.text.toString()
         val password = binding.passwordEditText.text.toString()
 
         viewModel.register(
-            name = name, surname = surname, email = email,
-            phoneNumber = phone, password = password
+            name = name, surname = surname, email = email, password = password
         )
     }
 

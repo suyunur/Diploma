@@ -29,6 +29,25 @@
         <action
             android:id="@+id/action_login_to_container"
             app:destination="@+id/containerFragment"/>
+        <action
+            android:id="@+id/action_login_to_forgot"
+            app:destination="@id/forgotFragment"/>
+    </fragment>
+    <fragment
+        android:id="@+id/forgotFragment"
+        android:name="com.example.diploma.ui.dashboard.password.ForgotPasswordFragment"
+        android:label="forgotPassword"
+        tools:layout="@layout/diploma_fragment_forgot_password">
+        <action
+            android:id="@+id/action_forgot_to_verify"
+            app:destination="@id/verifyFragment"/>
+    </fragment>
+    <fragment
+        android:id="@+id/verifyFragment"
+        android:name="com.example.diploma.ui.dashboard.password.VerifyPasswordFragment"
+        android:label="verifyFragment"
+        tools:layout="@layout/diploma_fragment_verify_code">
+
     </fragment>
     <fragment
         android:id="@+id/containerFragment"

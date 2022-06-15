@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.diploma.data.model.Technology
 import com.example.diploma.databinding.LayoutRoadmapBinding
 
@@ -32,6 +33,10 @@ class TechAdapter(
             root.setOnClickListener {
                 listener.onClick(tech)
             }
+            Glide.with(binding.roadmapImage.context)
+                .load(tech.image_url)
+                .centerCrop()
+                .into(binding.roadmapImage)
         }
     }
 

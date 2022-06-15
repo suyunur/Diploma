@@ -82,6 +82,7 @@ class ProfileFragment : Fragment() {
             dialog.dismiss()
             sharedPreferences.edit().remove(context?.getString(R.string.auth_token)).apply()
             sharedPreferences.edit().remove(context?.getString(R.string.user_id)).apply()
+            sharedPreferences.edit().remove(context?.getString(R.string.username)).apply()
             findNavController().navigate(R.id.action_container_to_login)
         }
 

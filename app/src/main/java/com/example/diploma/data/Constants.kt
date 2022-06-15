@@ -1,7 +1,10 @@
 package com.example.diploma.data
 
 import com.example.diploma.R
+import com.example.diploma.data.model.User
 import com.example.diploma.data.model.Vacancy
+
+internal var CURRENT_USER: User? = null
 
 internal var PASSWORD_SHOWN: Boolean = false
 

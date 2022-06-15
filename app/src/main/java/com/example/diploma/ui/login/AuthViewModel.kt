@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.diploma.data.CURRENT_USER
 import com.example.diploma.data.NEED_TOKEN
 import com.example.diploma.data.repo.AuthRepository
 import com.example.diploma.data.requestBody.LoginRequestBody
@@ -30,7 +31,6 @@ class AuthViewModel(
         name: String,
         surname: String,
         email: String,
-        phoneNumber: String,
         password: String
     ) = viewModelScope.launch {
         _loadLiveData.value = true
@@ -45,9 +45,13 @@ class AuthViewModel(
                 password = password
             )
         )
-        _authLiveData.value = response
+
+        CURRENT_USER = response?.user
+
+        _authLiveData.value = response?.data
 
         NEED_TOKEN = true
+
 
         _loadLiveData.value = false
     }
@@ -65,7 +69,9 @@ class AuthViewModel(
             )
         )
 
-        _authLiveData.value = response
+        CURRENT_USER = response?.user
+
+        _authLiveData.value = response?.data
 
         _loadLiveData.value = false
     }
