@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.diploma.data.CAROUSEL
 import com.example.diploma.databinding.ItemCarouselBinding
 
-class RecsAdapter() : RecyclerView.Adapter<RecsAdapter.ViewHolder>() {
+class RecsAdapter : RecyclerView.Adapter<RecsAdapter.ViewHolder>() {
 
     var listMain = mutableListOf<Int>()
 
@@ -17,7 +17,7 @@ class RecsAdapter() : RecyclerView.Adapter<RecsAdapter.ViewHolder>() {
 
     inner class ViewHolder(
         val binding: ItemCarouselBinding
-    ): RecyclerView.ViewHolder(binding.root) {
+    ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(int: Int) = with(binding) {
 

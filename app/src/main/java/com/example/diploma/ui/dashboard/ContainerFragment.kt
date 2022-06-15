@@ -15,7 +15,7 @@ import com.example.diploma.ui.dashboard.roadmap.RoadmapFragment
 import com.example.diploma.ui.dashboard.vacancies.VacanciesFragment
 
 
-class ContainerFragment: Fragment() {
+class ContainerFragment : Fragment() {
 
     private var _binding: DiplomaContainerFragmentBinding? = null
     private val binding get() = _binding!!
@@ -42,7 +42,7 @@ class ContainerFragment: Fragment() {
 
         binding.bottomNavigation.itemIconTintList = null
 
-        binding.bottomNavigation.selectedItemId = R.id.home_page
+        binding.bottomNavigation.selectedItemId = R.id.vacancies_page
 
         setUpBottomNavigationMenu()
     }
@@ -53,7 +53,7 @@ class ContainerFragment: Fragment() {
         vacanciesFragment = VacanciesFragment()
         roadmapFragment = RoadmapFragment()
 
-        replaceFragment(homeFragment)
+        replaceFragment(vacanciesFragment)
 
         binding.bottomNavigation.setOnItemSelectedListener {
             when (it.itemId) {

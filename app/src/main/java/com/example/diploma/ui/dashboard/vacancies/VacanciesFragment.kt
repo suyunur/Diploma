@@ -13,9 +13,9 @@ import com.example.diploma.databinding.DiplomaFragmentVacanciesBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
-class VacanciesFragment: Fragment(),
+class VacanciesFragment : Fragment(),
     VacanciesAdapter.ClickListener,
-    FilterAdapter.ClickListener{
+    FilterAdapter.ClickListener {
 
     private var _binding: DiplomaFragmentVacanciesBinding? = null
     private val binding get() = _binding!!

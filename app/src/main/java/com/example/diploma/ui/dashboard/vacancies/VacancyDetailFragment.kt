@@ -11,13 +11,10 @@ import androidx.fragment.app.DialogFragment
 import com.bumptech.glide.Glide
 import com.example.diploma.R
 import com.example.diploma.data.CHOSEN_VACANCY
-import com.example.diploma.data.COMPANY_NAMES
-import com.example.diploma.data.IMAGE_INDEX
-import com.example.diploma.data.VACANCY_IMAGES
 import com.example.diploma.databinding.DiplomaFragmentVacancyDetailBinding
 
 
-class VacancyDetailFragment: DialogFragment() {
+class VacancyDetailFragment : DialogFragment() {
 
     companion object {
 
@@ -51,7 +48,7 @@ class VacancyDetailFragment: DialogFragment() {
         fillVacancyDetail()
 
         binding.applyButton.setOnClickListener {
-            CHOSEN_VACANCY?.let { it1 -> openVacancyLink(it1.vacancyUrl) }
+            CHOSEN_VACANCY?.let { it1 -> openVacancyLink(it1.link) }
         }
 
         return binding.root
@@ -61,12 +58,17 @@ class VacancyDetailFragment: DialogFragment() {
     private fun fillVacancyDetail() {
         CHOSEN_VACANCY?.apply {
 
-            VACANCY_IMAGES[IMAGE_INDEX!!]?.let { binding.vacancyImage.setImageResource(it) }
+            Glide
+                .with(binding.vacancyImage.context)
+                .load(imageUrl)
+                .centerCrop()
+                .into(binding.vacancyImage)
 
             binding.vacancyTitle.text = title
-            binding.companyName.text = COMPANY_NAMES[IMAGE_INDEX!!]
-            binding.vacancySalary.text = final_salary.toString().substring(0, final_salary.toString().lastIndexOf(".")) + " KZT"
-            when (jobType) {
+            binding.companyName.text = employer
+            binding.vacancySalary.text = final_salary.toString()
+                .substring(0, final_salary.toString().lastIndexOf(".")) + " KZT"
+            when (employment_type) {
                 "INTERNSHIP" -> binding.vacancyJobType.text = "Internship"
                 "FULL_TIME" -> binding.vacancyJobType.text = "Full Time"
             }

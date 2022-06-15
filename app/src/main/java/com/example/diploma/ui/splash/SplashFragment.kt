@@ -14,7 +14,7 @@ import com.example.diploma.databinding.DiplomaFragmentSplashBinding
 import org.koin.android.ext.android.inject
 
 
-class SplashFragment: Fragment() {
+class SplashFragment : Fragment() {
 
     private var _binding: DiplomaFragmentSplashBinding? = null
     private val binding get() = _binding!!

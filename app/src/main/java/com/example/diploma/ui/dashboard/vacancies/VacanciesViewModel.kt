@@ -4,14 +4,13 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.diploma.data.VACANCY_STATIC
 import com.example.diploma.data.model.Vacancy
 import com.example.diploma.data.repo.DashboardRepository
 import kotlinx.coroutines.launch
 
 class VacanciesViewModel(
     private val dashboardRepository: DashboardRepository
-): ViewModel() {
+) : ViewModel() {
 
     val vacanciesLiveData: LiveData<List<Vacancy?>>
         get() = _vacanciesLiveData
@@ -30,37 +29,37 @@ class VacanciesViewModel(
     }
 
     fun getVacanciesByFilter(filter: String): List<Vacancy?>? {
-        val vacancies = VACANCY_STATIC
+        val vacancies = _vacanciesLiveData.value
 
         return when (filter) {
 
             "Internship" -> {
                 vacancies?.filter {
-                    it?.jobType == "INTERNSHIP"
+                    it?.employment_type == "INTERNSHIP"
                 }
             }
 
             "Full Time" -> {
                 vacancies?.filter {
-                    it?.jobType == "FULL_TIME"
+                    it?.employment_type == "FULL_TIME"
                 }
             }
 
             "Part Time" -> {
                 vacancies?.filter {
-                    it?.jobType == "PART TIME"
+                    it?.employment_type == "PART TIME"
                 }
             }
 
             "Project Work" -> {
                 vacancies?.filter {
-                    it?.jobType == "PROJECT WORK"
+                    it?.employment_type == "PROJECT WORK"
                 }
             }
 
             "Volunteering" -> {
                 vacancies?.filter {
-                    it?.jobType == "Volunteering".uppercase()
+                    it?.employment_type == "Volunteering".uppercase()
                 }
             }
 

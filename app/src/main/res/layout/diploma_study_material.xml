@@ -54,27 +54,26 @@
             android:id="@+id/content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
             android:fillViewport="true">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
                 android:orientation="vertical">
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="6dp"
-                    android:layout_marginEnd="30dp"
                     android:layout_marginTop="14dp"
                     app:cardCornerRadius="20dp">
 
                     <ImageView
+                        android:id="@+id/materialImageView"
                         android:layout_width="315dp"
                         android:layout_height="160dp"
                         tools:src="@color/purple"
+                        android:layout_gravity="center_horizontal"
                         />
 
                 </androidx.cardview.widget.CardView>
@@ -83,6 +82,7 @@
                     android:id="@+id/chapterNum"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
                     tools:text="Chapter 1"
                     android:textSize="32sp"
                     android:textColor="@color/black"
@@ -94,6 +94,7 @@
                     android:id="@+id/chapterTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
                     tools:text="Introduction to the PHP course for beginners"
                     android:textSize="16sp"
                     android:textColor="@color/black"
@@ -106,6 +107,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="30dp"
                     android:layout_marginEnd="24dp"
+                    android:layout_marginStart="24dp"
                     android:gravity="center_horizontal"
                     android:background="@drawable/bg_vacancy"
                     android:padding="10dp"
@@ -134,6 +136,8 @@
                     android:id="@+id/linksRecyclerView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="14dp"
+                    android:layout_marginEnd="12dp"
                     android:layout_marginTop="12dp"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     tools:itemCount="2"

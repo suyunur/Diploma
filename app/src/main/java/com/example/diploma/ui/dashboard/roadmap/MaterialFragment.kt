@@ -9,19 +9,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.Observer
+import com.bumptech.glide.Glide
 import com.example.diploma.R
 import com.example.diploma.data.TOPIC_ID
 import com.example.diploma.data.model.Material
 import com.example.diploma.databinding.DiplomaStudyMaterialBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class MaterialFragment: DialogFragment(), MaterialAdapter.ClickListener{
-
-    companion object {
-        fun newInstance(): MaterialFragment {
-            return MaterialFragment()
-        }
-    }
+open class MaterialFragment: DialogFragment(), MaterialAdapter.ClickListener {
 
     private var _binding: DiplomaStudyMaterialBinding? = null
     private val binding get() = _binding!!
@@ -29,6 +24,16 @@ class MaterialFragment: DialogFragment(), MaterialAdapter.ClickListener{
     private lateinit var adapter: MaterialAdapter
 
     private val viewModel: RoadmapViewModel by viewModel()
+
+    private lateinit var listener: DismissListener
+
+    fun interface DismissListener {
+        fun onDismissed()
+    }
+
+    fun setListener(listener: DismissListener) {
+        this.listener = listener
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,6 +49,10 @@ class MaterialFragment: DialogFragment(), MaterialAdapter.ClickListener{
 
         adapter = MaterialAdapter(this)
         binding.linksRecyclerView.adapter = adapter
+
+        binding.nextButton.setOnClickListener {
+            onDoneClicked()
+        }
 
         viewModel.getMaterial()
 
@@ -81,6 +90,12 @@ class MaterialFragment: DialogFragment(), MaterialAdapter.ClickListener{
         binding.chapterText.text = it.description
         binding.chapterNum.text = "Chapter ${TOPIC_ID!!}"
         adapter.setList(it.subtopic)
+
+        Glide
+            .with(binding.materialImageView.context)
+            .load(it.image_url)
+            .centerCrop()
+            .into(binding.materialImageView)
     }
 
     private fun openText(link: String) {
@@ -95,10 +110,15 @@ class MaterialFragment: DialogFragment(), MaterialAdapter.ClickListener{
         startActivity(intent)
     }
 
+    private fun onDoneClicked() {
+        viewModel.doneTopic()
+        listener.onDismissed()
+        dismiss()
+    }
+
     override fun onClick(link: String, type: String) {
         if (type == "READ")
             openText(link)
         else openVideo(link)
     }
-
 }

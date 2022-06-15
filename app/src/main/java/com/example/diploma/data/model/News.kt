@@ -8,4 +8,4 @@ data class News(
     val body: String?,
     @SerializedName("link")
     val link: String?
-): Serializable
+) : Serializable

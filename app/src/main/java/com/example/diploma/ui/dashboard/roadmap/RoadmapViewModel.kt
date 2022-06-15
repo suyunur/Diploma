@@ -13,7 +13,7 @@ import kotlinx.coroutines.launch
 
 class RoadmapViewModel(
     private val dashboardRepository: DashboardRepository
-): ViewModel() {
+) : ViewModel() {
 
     val roadmapLiveData: LiveData<List<Roadmap>>
         get() = _roadmapLiveData
@@ -34,6 +34,10 @@ class RoadmapViewModel(
     val materialLiveData: LiveData<Material>
         get() = _materialLiveData
     private val _materialLiveData = MutableLiveData<Material>()
+
+    val doneLiveData: LiveData<Any?>
+        get() = _doneLiveData
+    private val _doneLiveData = MutableLiveData<Any?>()
 
     fun getTopics() = viewModelScope.launch {
         _loadLiveData.value = true
@@ -63,6 +67,14 @@ class RoadmapViewModel(
         _loadLiveData.value = true
 
         _materialLiveData.value = dashboardRepository.getMaterial()
+
+        _loadLiveData.value = false
+    }
+
+    fun doneTopic() = viewModelScope.launch {
+        _loadLiveData.value = true
+
+        dashboardRepository.doneTopic()
 
         _loadLiveData.value = false
     }

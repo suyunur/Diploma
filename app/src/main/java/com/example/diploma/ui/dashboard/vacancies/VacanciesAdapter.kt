@@ -4,12 +4,10 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.diploma.data.COMPANY_NAMES
-import com.example.diploma.data.IMAGE_INDEX
-import com.example.diploma.data.VACANCY_IMAGES
+import com.bumptech.glide.Glide
+import com.example.diploma.R
 import com.example.diploma.data.model.Vacancy
 import com.example.diploma.databinding.ItemVacancyBinding
-import java.lang.Exception
 
 
 class VacanciesAdapter(
@@ -17,7 +15,6 @@ class VacanciesAdapter(
 ) : RecyclerView.Adapter<VacanciesAdapter.ViewHolder>() {
 
     var vacancies = mutableListOf<Vacancy?>()
-    var ind = -1
 
     @SuppressLint("NotifyDataSetChanged")
     fun setList(vacancies: List<Vacancy?>) {
@@ -37,26 +34,28 @@ class VacanciesAdapter(
         fun bind(vacancy: Vacancy) = with(binding) {
             root.setOnClickListener {
                 listener.onClick(vacancy)
-                IMAGE_INDEX = layoutPosition
             }
 
-            try {
-                vacancyTitle.text = vacancy.title
-                ind += 1
-                companyName.text = COMPANY_NAMES[ind]
-                var job = ""
-                if (vacancy.jobType == "INTERNSHIP") {
-                    job = "Internship"
-                } else if (vacancy.jobType == "FULL_TIME") {
-                    job = "Full TIme"
-                }
-                vacancyDetail.text = "${vacancy.location} - $job"
-                val salaryText = vacancy.final_salary.toString()
-                salary.text = salaryText.substring(0, salaryText.lastIndexOf(".")) + " KZT"
-                VACANCY_IMAGES[layoutPosition]?.let { vacancyImage.setImageResource(it) }
-            } catch (e: Exception) {
-                print(e)
+            vacancyTitle.text = vacancy.title
+            companyName.text = vacancy.employer
+            var jobType = ""
+            when (vacancy.employment_type) {
+                "INTERNSHIP" -> jobType = root.context.getString(R.string.internship)
+                "FULL_TIME" -> jobType = root.context.getString(R.string.full_time)
+                "PART_TIME" -> jobType = root.context.getString(R.string.part_time)
+                "PROJECT_WORK" -> jobType = root.context.getString(R.string.project_work)
+                "VOLUNTEERING" -> jobType = root.context.getString(R.string.volunteering)
             }
+            vacancyDetail.text = "${vacancy.location} - $jobType"
+            salary.text = vacancy.final_salary.toString()
+                .substring(0, vacancy.final_salary.toString().lastIndexOf(".")) + " KZT"
+
+
+            Glide
+                .with(vacancyImage.context)
+                .load(vacancy.imageUrl)
+                .centerCrop()
+                .into(vacancyImage)
         }
 
     }

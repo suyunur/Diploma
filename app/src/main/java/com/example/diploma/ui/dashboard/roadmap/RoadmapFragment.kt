@@ -17,7 +17,7 @@ import com.example.diploma.databinding.DiplomaFragmentRoadmapBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
-class RoadmapFragment: Fragment() {
+class RoadmapFragment : Fragment() {
 
     private var _binding: DiplomaFragmentRoadmapBinding? = null
     private val binding get() = _binding!!

@@ -9,7 +9,7 @@ import com.example.diploma.databinding.LayoutRoadmapBinding
 
 class TechAdapter(
     private val listener: ClickListener
-) : RecyclerView.Adapter<TechAdapter.ViewHolder>(){
+) : RecyclerView.Adapter<TechAdapter.ViewHolder>() {
 
     private var techs = mutableListOf<Technology>()
 
@@ -28,9 +28,9 @@ class TechAdapter(
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(tech: Technology) = with(binding) {
+            roadmapText.text = tech.name
             root.setOnClickListener {
                 listener.onClick(tech)
-                roadmapText.text = tech.name
             }
         }
     }

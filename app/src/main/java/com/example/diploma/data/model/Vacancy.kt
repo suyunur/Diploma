@@ -10,12 +10,17 @@ data class Vacancy(
     @SerializedName("image_url")
     val imageUrl: String?,
     @SerializedName("employment_type")
-    val jobType: String?,
+    val employment_type: String?,
     val schedule: String?,
     val specialization: String?,
     val location: String?,
     @SerializedName("skill")
     val skill: List<Skill>,
-    val vacancyUrl: String,
-    val companyName: String,
-): Serializable
+    val link: String,
+    val employer: String,
+) : Serializable {
+
+    data class Skill(
+        var name: String?
+    )
+}

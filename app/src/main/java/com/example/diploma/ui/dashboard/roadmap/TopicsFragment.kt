@@ -7,18 +7,17 @@ import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.Observer
 import com.example.diploma.R
-import com.example.diploma.data.TOPIC_ID
-import com.example.diploma.data.TOPIC_NAME
+import com.example.diploma.data.*
 import com.example.diploma.data.model.Topic
 import com.example.diploma.databinding.DiplomaFragmentTopicsBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class TopicsFragment: DialogFragment(), TopicAdapter.ClickListener {
+class TopicsFragment : DialogFragment(), TopicAdapter.ClickListener {
 
-    companion object {
-        fun newInstance(): TopicsFragment {
-            return TopicsFragment()
-        }
+    override fun onResume() {
+        super.onResume()
+        setObservers()
+        viewModel.getTopics()
     }
 
     private var _binding: DiplomaFragmentTopicsBinding? = null
@@ -49,9 +48,8 @@ class TopicsFragment: DialogFragment(), TopicAdapter.ClickListener {
         topicAdapter = TopicAdapter(this)
         binding.topicsRecyclerView.adapter = topicAdapter
 
-        setObservers()
-
-        viewModel.getTopics()
+        binding.courseName.text = CHOSEN_ROADMAP
+        binding.sectionName.text = CHOSEN_SECTION
     }
 
     private fun setObservers() {
@@ -71,15 +69,21 @@ class TopicsFragment: DialogFragment(), TopicAdapter.ClickListener {
             binding.progressText.visibility = View.GONE
         } else
             binding.load.visibility = View.GONE
-            binding.topicsRecyclerView.visibility = View.VISIBLE
-            binding.progressBar.visibility = View.VISIBLE
-            binding.progressText.visibility = View.VISIBLE
+        binding.topicsRecyclerView.visibility = View.VISIBLE
+        binding.progressBar.visibility = View.VISIBLE
+        binding.progressText.visibility = View.VISIBLE
     }
 
     override fun onClick(topic: Topic) {
         TOPIC_NAME = topic.name
         TOPIC_ID = topic.id
-        val dialog = MaterialFragment.newInstance()
+        IS_DONE = topic.is_done
+
+        val dialog = MaterialFragment()
+        dialog.setListener {
+            viewModel.getTopics()
+        }
+
         dialog.show(parentFragmentManager, dialog::class.qualifiedName)
     }
 }

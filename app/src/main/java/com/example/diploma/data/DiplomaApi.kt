@@ -10,7 +10,7 @@ import retrofit2.http.*
 interface DiplomaApi {
 
     @POST("register/")
-    suspend fun register(@Body user: UserRequestBody)
+    suspend fun register(@Body user: UserRequestBody): AuthResponse?
 
     @POST("token/")
     suspend fun login(@Body user: LoginRequestBody): AuthResponse?
@@ -44,4 +44,11 @@ interface DiplomaApi {
         @Path("tech_id") techId: Int,
         @Path("topic_id") topicId: Int
     ): Material
+
+    @GET("roadmaps/{spec_id}/{tech_id}/{topic_id}/done/")
+    suspend fun done(
+        @Path("spec_id") roadmapId: Int,
+        @Path("tech_id") techId: Int,
+        @Path("topic_id") topicId: Int
+    )
 }

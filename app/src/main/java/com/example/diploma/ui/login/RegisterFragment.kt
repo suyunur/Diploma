@@ -10,13 +10,14 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.diploma.R
+import com.example.diploma.data.responseBody.AuthResponse
 import com.example.diploma.databinding.DiplomaFragmentRegisterBinding
 import kotlinx.coroutines.DelicateCoroutinesApi
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 @DelicateCoroutinesApi
-class RegisterFragment: Fragment() {
+class RegisterFragment : Fragment() {
 
     private var _binding: DiplomaFragmentRegisterBinding? = null
     private val binding get() = _binding!!
@@ -52,8 +53,17 @@ class RegisterFragment: Fragment() {
         }
     }
 
+    private val tokenObserver = Observer<AuthResponse?> {
+        if (it.access != null) {
+            viewModel.saveAuthResponse(it)
+            openContainerFragment()
+            hideErrorTexts()
+        }
+    }
+
     private fun setUpObservers() {
         viewModel.loadLiveData.observe(viewLifecycleOwner, loadObserver)
+        viewModel.authLiveData.observe(viewLifecycleOwner, tokenObserver)
     }
 
     private fun setUpClickListeners() {
@@ -66,7 +76,7 @@ class RegisterFragment: Fragment() {
         }
 
         binding.seePasswordConfirm.setOnClickListener {
-           changeConfirmVisibility()
+            changeConfirmVisibility()
         }
 
         binding.signActionTextView.setOnClickListener {
@@ -105,11 +115,9 @@ class RegisterFragment: Fragment() {
         }
         if (binding.confirmPasswordEditText.text.isEmpty()) {
             binding.confirmErrorText.visibility = View.VISIBLE
-        }
-
-        else {
+        } else {
             hideErrorTexts()
-            if (passwordsMatch()) register()
+            if (passwordsMatch() && agreementChecked()) register()
         }
     }
 
@@ -124,7 +132,8 @@ class RegisterFragment: Fragment() {
 
     private fun passwordsMatch(): Boolean {
         return if (binding.passwordEditText.text.toString() ==
-            binding.confirmPasswordEditText.text.toString()) {
+            binding.confirmPasswordEditText.text.toString()
+        ) {
             true
         } else {
             binding.confirmErrorText.visibility = View.VISIBLE
@@ -145,6 +154,10 @@ class RegisterFragment: Fragment() {
         findNavController().navigate(R.id.action_register_to_login)
     }
 
+    private fun openContainerFragment() {
+        findNavController().navigate(R.id.action_login_to_container)
+    }
+
     private fun changePasswordVisibility() {
         if (binding.passwordEditText.inputType == InputType.TYPE_TEXT_VARIATION_PASSWORD) {
             binding.passwordEditText.inputType = InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
@@ -155,7 +168,8 @@ class RegisterFragment: Fragment() {
 
     private fun changeConfirmVisibility() {
         if (binding.confirmPasswordEditText.inputType == InputType.TYPE_TEXT_VARIATION_PASSWORD) {
-            binding.confirmPasswordEditText.inputType = InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
+            binding.confirmPasswordEditText.inputType =
+                InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
         } else {
             binding.confirmPasswordEditText.inputType = InputType.TYPE_TEXT_VARIATION_PASSWORD
         }

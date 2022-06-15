@@ -11,7 +11,7 @@ import kotlinx.coroutines.withContext
 
 class DashboardRepository(
     private val api: DiplomaApi
-): MainRepository() {
+) : MainRepository() {
 
     suspend fun getUser(): User {
         return withContext(Dispatchers.IO) {
@@ -55,6 +55,12 @@ class DashboardRepository(
     suspend fun getMaterial(): Material {
         return withContext(Dispatchers.IO) {
             api.getMaterial(ROADMAP_ID!!, TECHNOLOGY_ID!!, TOPIC_ID!!)
+        }
+    }
+
+    suspend fun doneTopic() {
+        withContext(Dispatchers.IO) {
+            api.done(ROADMAP_ID!!, TECHNOLOGY_ID!!, TOPIC_ID!!)
         }
     }
 

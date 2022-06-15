@@ -38,61 +38,69 @@
         android:textSize="16sp"
         android:fontFamily="@font/source_sans_pro_regular"/>
 
-    <TextView
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="14dp"
-        android:layout_marginStart="24dp"
-        android:text="@string/study_progress"
-        android:textColor="@color/dark_blue"
-        android:textSize="18sp"
-        android:fontFamily="@font/source_sans_pro_semibold"
-        />
+        android:layout_height="wrap_content">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/progressRecyclerView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="15dp"
-        android:orientation="horizontal"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:visibility="visible"
-        android:visibility="gone"
-        tools:listitem="@layout/item_study_progress"
-        />
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:indeterminateTint="@color/black"
+            android:visibility="gone"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="start"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="40dp"
-        android:fontFamily="@font/source_sans_pro_semibold"
-        android:text="@string/approvement_of_skills"
-        android:textColor="@color/dark_blue"
-        android:textSize="18sp" />
-
-    <LinearLayout
-        android:id="@+id/skills"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:layout_marginStart="24dp"
-        tools:visibility="visible"
-        android:visibility="gone">
-
-        <include
-            android:id="@+id/skill1"
-            layout="@layout/item_skill_approved"
-            android:layout_marginEnd="20dp"
+        <LinearLayout
+            android:id="@+id/contentLayout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_width="wrap_content" />
+            android:orientation="vertical">
 
-        <include
-            android:id="@+id/skill2"
-            layout="@layout/item_skill_approved"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:layout_marginStart="24dp"
+                android:text="@string/study_progress"
+                android:textColor="@color/dark_blue"
+                android:textSize="18sp"
+                android:fontFamily="@font/source_sans_pro_semibold"
+                />
 
-    </LinearLayout>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/progressRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="15dp"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/item_study_progress"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="40dp"
+                android:fontFamily="@font/source_sans_pro_semibold"
+                android:text="@string/approvement_of_skills"
+                android:textColor="@color/dark_blue"
+                android:textSize="18sp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/skillsRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="24dp"
+                android:orientation="horizontal"
+                tools:listitem="@layout/item_skill_approved"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+
+        </LinearLayout>
+
+    </FrameLayout>
 
 </LinearLayout>

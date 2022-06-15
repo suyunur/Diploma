@@ -13,7 +13,6 @@ import androidx.lifecycle.Observer
 import com.example.diploma.data.CAROUSEL
 import com.example.diploma.data.model.News
 import com.example.diploma.databinding.DiplomaFragmentMainPageBinding
-import org.koin.android.ext.android.bind
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
@@ -23,7 +22,7 @@ class HomeFragment : Fragment(),
     private var _binding: DiplomaFragmentMainPageBinding? = null
     private val binding get() = _binding!!
 
-      private val viewModel: HomeViewModel by viewModel()
+    private val viewModel: HomeViewModel by viewModel()
 
     private lateinit var adapter: NewsAdapter
     private lateinit var recs: RecsAdapter

@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.example.diploma.data.RECS_IMAGES
 import com.example.diploma.data.model.News
 import com.example.diploma.databinding.ItemRecommendationBinding
@@ -12,7 +11,7 @@ import com.example.diploma.databinding.ItemRecommendationBinding
 
 class NewsAdapter(
     private val clickListener: ClickListener
-    ) : RecyclerView.Adapter<NewsAdapter.ViewHolder>() {
+) : RecyclerView.Adapter<NewsAdapter.ViewHolder>() {
 
     var news = mutableListOf<News?>()
 
@@ -44,16 +43,16 @@ class NewsAdapter(
 
     inner class ViewHolder(
         val binding: ItemRecommendationBinding
-        ): RecyclerView.ViewHolder(binding.root) {
+    ) : RecyclerView.ViewHolder(binding.root) {
 
-            fun bind(news: News) = with(binding) {
-                root.setOnClickListener {
-                    clickListener.onClick(news)
-                }
-
-                newsTitle.text = news.title
-
-                RECS_IMAGES[layoutPosition]?.let { newsImage.setImageResource(it) }
+        fun bind(news: News) = with(binding) {
+            root.setOnClickListener {
+                clickListener.onClick(news)
             }
+
+            newsTitle.text = news.title
+
+            RECS_IMAGES[layoutPosition]?.let { newsImage.setImageResource(it) }
         }
+    }
 }

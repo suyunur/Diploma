@@ -6,4 +6,5 @@ data class Topic(
     val id: Int?,
     val name: String?,
     val description: String?,
-): Serializable
+    val is_done: Boolean?
+) : Serializable

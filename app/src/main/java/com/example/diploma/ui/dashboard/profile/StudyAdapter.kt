@@ -4,26 +4,29 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.diploma.data.model.User
 import com.example.diploma.databinding.ItemStudyProgressBinding
 
 class StudyAdapter : RecyclerView.Adapter<StudyAdapter.ViewHolder>() {
 
-    var listStudy = mutableListOf<String>()
+    private var listStudy = mutableListOf<User.UserProgress>()
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setList(list: List<String>) {
+    fun setList(list: List<User.UserProgress>) {
         this.listStudy = list.toMutableList()
         notifyDataSetChanged()
     }
 
     inner class ViewHolder(
         private val binding: ItemStudyProgressBinding
-    ): RecyclerView.ViewHolder(binding.root) {
+    ) : RecyclerView.ViewHolder(binding.root) {
 
         @SuppressLint("SetTextI18n")
-        fun bind(string: String) = with(binding) {
-            progressPercent.text = "12 %"
-            progressCircle.progress = 12
+        fun bind(study: User.UserProgress) = with(binding) {
+            progressPercent.text = "${study.progress.toInt()} %"
+            progressCircle.progress = study.progress.toInt()
+            progressCircle.onFinishTemporaryDetach()
+            courseName.text = study.tech_name
         }
     }
 
@@ -42,5 +45,4 @@ class StudyAdapter : RecyclerView.Adapter<StudyAdapter.ViewHolder>() {
     override fun getItemCount(): Int {
         return listStudy.size
     }
-
 }

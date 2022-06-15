@@ -7,12 +7,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import com.example.diploma.data.CHOSEN_ROADMAP
+import com.example.diploma.data.CHOSEN_SECTION
 import com.example.diploma.data.TECHNOLOGY_ID
+import com.example.diploma.data.TECH_IMAGE_URL
 import com.example.diploma.data.model.Technology
 import com.example.diploma.databinding.DiplomaLayoutTechnologiesBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class TechFragment: Fragment(), TechAdapter.ClickListener {
+class TechFragment : Fragment(), TechAdapter.ClickListener {
 
     private var _binding: DiplomaLayoutTechnologiesBinding? = null
     private val binding get() = _binding!!
@@ -35,7 +38,7 @@ class TechFragment: Fragment(), TechAdapter.ClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.topPanel.title.text = "Backend"
+        binding.topPanel.title.text = CHOSEN_ROADMAP
 
         techAdapter = TechAdapter(this)
         binding.techRecycler.adapter = techAdapter
@@ -66,7 +69,9 @@ class TechFragment: Fragment(), TechAdapter.ClickListener {
 
     override fun onClick(tech: Technology) {
         TECHNOLOGY_ID = tech.id
-        val dialog = TopicsFragment.newInstance()
+        CHOSEN_SECTION = tech.name
+        TECH_IMAGE_URL = tech.image_url
+        val dialog = TopicsFragment()
         dialog.show(parentFragmentManager, dialog::class.qualifiedName)
     }
 

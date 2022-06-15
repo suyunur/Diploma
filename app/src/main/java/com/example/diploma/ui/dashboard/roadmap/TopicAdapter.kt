@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.diploma.R
 import com.example.diploma.data.model.Topic
 import com.example.diploma.databinding.ItemTopicBinding
 
@@ -34,6 +35,11 @@ class TopicAdapter(
             }
             topicName.text = topic.name
             topicNum.text = "Chapter ${(layoutPosition + 1)}"
+            if (topic.is_done == true) {
+                topicStatusImage.setImageResource(R.drawable.ic_done)
+            } else {
+                topicStatusImage.setImageResource(R.drawable.ic_next_black)
+            }
         }
     }
 
