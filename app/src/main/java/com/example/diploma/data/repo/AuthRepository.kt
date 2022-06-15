@@ -22,7 +22,7 @@ class AuthRepository(
     suspend fun register(user: UserRequestBody): AuthResponse? {
         return try {
             withContext(Dispatchers.IO) {
-                api.register(user)
+                api.register(user)?.data
             }
         } catch (e: Exception) {
             null

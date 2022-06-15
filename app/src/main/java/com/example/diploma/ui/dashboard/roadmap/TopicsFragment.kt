@@ -1,5 +1,6 @@
 package com.example.diploma.ui.dashboard.roadmap
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -42,6 +43,7 @@ class TopicsFragment : DialogFragment(), TopicAdapter.ClickListener {
         return binding.root
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -50,6 +52,9 @@ class TopicsFragment : DialogFragment(), TopicAdapter.ClickListener {
 
         binding.courseName.text = CHOSEN_ROADMAP
         binding.sectionName.text = CHOSEN_SECTION
+
+        binding.progressBar.progress = CHOSEN_PROGRESS!!
+        binding.progressText.text = "$CHOSEN_PROGRESS% completed"
     }
 
     private fun setObservers() {
@@ -67,11 +72,14 @@ class TopicsFragment : DialogFragment(), TopicAdapter.ClickListener {
             binding.topicsRecyclerView.visibility = View.GONE
             binding.progressBar.visibility = View.GONE
             binding.progressText.visibility = View.GONE
-        } else
+            binding.content.visibility = View.GONE
+        } else {
             binding.load.visibility = View.GONE
-        binding.topicsRecyclerView.visibility = View.VISIBLE
-        binding.progressBar.visibility = View.VISIBLE
-        binding.progressText.visibility = View.VISIBLE
+            binding.topicsRecyclerView.visibility = View.VISIBLE
+            binding.progressBar.visibility = View.VISIBLE
+            binding.progressText.visibility = View.VISIBLE
+            binding.content.visibility = View.VISIBLE
+        }
     }
 
     override fun onClick(topic: Topic) {

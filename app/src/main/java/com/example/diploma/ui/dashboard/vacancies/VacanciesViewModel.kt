@@ -4,8 +4,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.diploma.data.SHOW_ALL
 import com.example.diploma.data.model.Vacancy
 import com.example.diploma.data.repo.DashboardRepository
+import com.example.diploma.data.requestBody.VacancyRequestBody
 import kotlinx.coroutines.launch
 
 class VacanciesViewModel(
@@ -23,7 +25,27 @@ class VacanciesViewModel(
     fun getVacancies() = viewModelScope.launch {
         _statusLiveData.value = true
 
-        _vacanciesLiveData.value = dashboardRepository.getVacancies()
+        val res = dashboardRepository.getVacancies()
+
+        if (SHOW_ALL) {
+            _vacanciesLiveData.value = res
+        } else {
+            _vacanciesLiveData.value = res.filter { it?.is_favourite == true }
+        }
+
+        _statusLiveData.value = false
+    }
+
+    fun updateVacancies(data: VacancyRequestBody) = viewModelScope.launch {
+        _statusLiveData.value = true
+
+        val res = dashboardRepository.updateVacancies(data)
+
+        if (SHOW_ALL) {
+            _vacanciesLiveData.value = res
+        } else {
+            _vacanciesLiveData.value = res.filter { it?.is_favourite == true }
+        }
 
         _statusLiveData.value = false
     }

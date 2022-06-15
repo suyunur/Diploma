@@ -4,6 +4,7 @@ import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
 data class Vacancy(
+    val id: Int?,
     val title: String?,
     val description: String?,
     val final_salary: String?,
@@ -18,6 +19,7 @@ data class Vacancy(
     val skill: List<Skill>,
     val link: String,
     val employer: String,
+    val is_favourite: Boolean?
 ) : Serializable {
 
     data class Skill(

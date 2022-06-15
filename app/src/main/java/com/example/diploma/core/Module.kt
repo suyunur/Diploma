@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import com.example.diploma.R
 import com.example.diploma.data.DiplomaApi
+import com.example.diploma.data.NEED_TOKEN
 import com.example.diploma.data.repo.AuthRepository
 import com.example.diploma.data.repo.DashboardRepository
 import com.example.diploma.ui.dashboard.home.HomeViewModel
@@ -60,9 +61,7 @@ private fun provideOKHttp(sharedPreferences: SharedPreferences, context: Context
         .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
         .addInterceptor { chain ->
             val request = chain.request().newBuilder()
-            if (chain.request().url.toString()
-                    .contains("http://demo-it-bilim.herokuapp.com/api/")
-            ) {
+            if (NEED_TOKEN == true) {
                 request.addHeader(
                     "Authorization",
                     "Bearer ${sharedPreferences.getString(context.getString(R.string.user_id), "")}"

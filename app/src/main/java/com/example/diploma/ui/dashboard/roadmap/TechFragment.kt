@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import com.example.diploma.data.CHOSEN_PROGRESS
 import com.example.diploma.data.CHOSEN_ROADMAP
 import com.example.diploma.data.CHOSEN_SECTION
 import com.example.diploma.data.TECHNOLOGY_ID
@@ -71,6 +72,7 @@ class TechFragment : Fragment(), TechAdapter.ClickListener {
         TECHNOLOGY_ID = tech.id
         CHOSEN_SECTION = tech.name
         TECH_IMAGE_URL = tech.image_url
+        CHOSEN_PROGRESS = tech.progress.toInt()
         val dialog = TopicsFragment()
         dialog.show(parentFragmentManager, dialog::class.qualifiedName)
     }

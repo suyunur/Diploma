@@ -5,7 +5,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.diploma.R
@@ -13,6 +15,7 @@ import com.example.diploma.data.responseBody.AuthResponse
 import com.example.diploma.databinding.DiplomaFragmentLoginBinding
 import kotlinx.coroutines.DelicateCoroutinesApi
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import kotlin.system.exitProcess
 
 
 @DelicateCoroutinesApi
@@ -37,6 +40,14 @@ class LoginFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.topBar.title.text = context?.getString(R.string.login)
+
+        activity?.onBackPressedDispatcher?.addCallback(requireActivity(), object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                parentFragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+                activity!!.finish()
+                exitProcess(0)
+            }
+        })
 
         setUpObservers()
 

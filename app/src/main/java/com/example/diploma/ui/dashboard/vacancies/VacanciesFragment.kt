@@ -8,7 +8,9 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.example.diploma.R
 import com.example.diploma.data.CHOSEN_VACANCY
+import com.example.diploma.data.SHOW_ALL
 import com.example.diploma.data.model.Vacancy
+import com.example.diploma.data.requestBody.VacancyRequestBody
 import com.example.diploma.databinding.DiplomaFragmentVacanciesBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -47,6 +49,18 @@ class VacanciesFragment : Fragment(),
         binding.filterRecyclerView.adapter = filtersAdapter
 
         binding.topPanel.title.text = context?.getString(R.string.vacancies)
+        binding.topPanel.leftButton.setImageResource(R.drawable.ic_favourite)
+        binding.topPanel.leftButton.visibility = View.VISIBLE
+        binding.topPanel.leftButton.setOnClickListener {
+            SHOW_ALL = if (SHOW_ALL) {
+                binding.topPanel.leftButton.setImageResource(R.drawable.ic_all_vacancies)
+                false
+            } else {
+                binding.topPanel.leftButton.setImageResource(R.drawable.ic_favourite)
+                true
+            }
+            viewModel.getVacancies()
+        }
 
         observeLiveData()
     }
@@ -74,6 +88,15 @@ class VacanciesFragment : Fragment(),
         CHOSEN_VACANCY = vacancy
         val dialog = VacancyDetailFragment.newInstance()
         dialog.show(parentFragmentManager, dialog::class.qualifiedName)
+    }
+
+    override fun onMark(id: Int, isMark: Boolean) {
+        viewModel.updateVacancies(
+            VacancyRequestBody(
+                vacancy_id = id,
+                flag = isMark
+            )
+        )
     }
 
     override fun onFilter(string: String) {

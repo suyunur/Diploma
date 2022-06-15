@@ -17,11 +17,9 @@ import com.example.diploma.databinding.DiplomaFragmentVacancyDetailBinding
 class VacancyDetailFragment : DialogFragment() {
 
     companion object {
-
         fun newInstance(): VacancyDetailFragment {
             return VacancyDetailFragment()
         }
-
     }
 
     private var _binding: DiplomaFragmentVacancyDetailBinding? = null

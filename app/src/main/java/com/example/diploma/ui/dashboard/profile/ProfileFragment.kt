@@ -2,6 +2,9 @@ package com.example.diploma.ui.dashboard.profile
 
 import android.annotation.SuppressLint
 import android.content.SharedPreferences
+import android.content.res.Resources
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +16,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.diploma.R
 import com.example.diploma.data.model.User
 import com.example.diploma.databinding.DiplomaFragmentProfileBinding
+import org.koin.android.ext.android.bind
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -47,8 +51,19 @@ class ProfileFragment : Fragment() {
         binding.topPanel.rightButton.setOnClickListener {
             logout()
         }
+        binding.userImage.setImageBitmap(getBitmap(resources, R.mipmap.image_user))
 
         return binding.root
+    }
+
+    private fun getBitmap(res: Resources, image: Int): Bitmap? {
+        val options = BitmapFactory.Options()
+        options.inJustDecodeBounds = false
+        options.inSampleSize = 1
+        options.inScaled = false
+        options.inPreferredConfig = Bitmap.Config.ARGB_8888
+
+        return BitmapFactory.decodeResource(res, image, options)
     }
 
     @SuppressLint("SetTextI18n")

@@ -5,6 +5,7 @@ import com.example.diploma.data.ROADMAP_ID
 import com.example.diploma.data.TECHNOLOGY_ID
 import com.example.diploma.data.TOPIC_ID
 import com.example.diploma.data.model.*
+import com.example.diploma.data.requestBody.VacancyRequestBody
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
@@ -28,6 +29,12 @@ class DashboardRepository(
     suspend fun getVacancies(): List<Vacancy?> {
         return withContext(Dispatchers.IO) {
             api.getVacancies()
+        }
+    }
+
+    suspend fun updateVacancies(data: VacancyRequestBody): List<Vacancy?> {
+        return withContext(Dispatchers.IO) {
+            api.updateVacancies(data)
         }
     }
 

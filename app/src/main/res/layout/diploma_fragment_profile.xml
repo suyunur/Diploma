@@ -11,6 +11,7 @@
         layout="@layout/diploma_top_bar"/>
 
     <ImageView
+        android:id="@+id/userImage"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:src="@drawable/ic_profile"
@@ -83,7 +84,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
                 android:layout_marginStart="24dp"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="20dp"
                 android:fontFamily="@font/source_sans_pro_semibold"
                 android:text="@string/approvement_of_skills"
                 android:textColor="@color/dark_blue"

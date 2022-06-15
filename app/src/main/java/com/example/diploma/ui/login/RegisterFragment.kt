@@ -54,7 +54,7 @@ class RegisterFragment : Fragment() {
     }
 
     private val tokenObserver = Observer<AuthResponse?> {
-        if (it.access != null) {
+        if (it != null) {
             viewModel.saveAuthResponse(it)
             openContainerFragment()
             hideErrorTexts()
@@ -155,7 +155,7 @@ class RegisterFragment : Fragment() {
     }
 
     private fun openContainerFragment() {
-        findNavController().navigate(R.id.action_login_to_container)
+        findNavController().navigate(R.id.action_register_to_container)
     }
 
     private fun changePasswordVisibility() {
