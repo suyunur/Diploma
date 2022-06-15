@@ -16,7 +16,7 @@ import com.example.diploma.data.model.Material
 import com.example.diploma.databinding.DiplomaStudyMaterialBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-open class MaterialFragment: DialogFragment(), MaterialAdapter.ClickListener {
+open class MaterialFragment : DialogFragment(), MaterialAdapter.ClickListener {
 
     private var _binding: DiplomaStudyMaterialBinding? = null
     private val binding get() = _binding!!

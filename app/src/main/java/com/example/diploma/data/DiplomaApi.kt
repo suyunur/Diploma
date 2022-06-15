@@ -4,7 +4,10 @@ import com.example.diploma.data.model.*
 import com.example.diploma.data.requestBody.LoginRequestBody
 import com.example.diploma.data.requestBody.UserRequestBody
 import com.example.diploma.data.responseBody.AuthResponse
-import retrofit2.http.*
+import retrofit2.http.Body
+import retrofit2.http.GET
+import retrofit2.http.POST
+import retrofit2.http.Path
 
 
 interface DiplomaApi {
