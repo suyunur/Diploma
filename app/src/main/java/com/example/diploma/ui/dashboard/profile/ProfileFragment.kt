@@ -16,7 +16,6 @@ import androidx.navigation.fragment.findNavController
 import com.example.diploma.R
 import com.example.diploma.data.model.User
 import com.example.diploma.databinding.DiplomaFragmentProfileBinding
-import org.koin.android.ext.android.bind
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -78,9 +77,15 @@ class ProfileFragment : Fragment() {
     }
 
     private fun logout() {
-        sharedPreferences.edit().remove(context?.getString(R.string.auth_token)).apply()
-        sharedPreferences.edit().remove(context?.getString(R.string.user_id)).apply()
-        findNavController().navigate(R.id.action_container_to_login)
+        val dialog = LogoutDialog()
+        dialog.setListener {
+            dialog.dismiss()
+            sharedPreferences.edit().remove(context?.getString(R.string.auth_token)).apply()
+            sharedPreferences.edit().remove(context?.getString(R.string.user_id)).apply()
+            findNavController().navigate(R.id.action_container_to_login)
+        }
+
+        dialog.show(parentFragmentManager, dialog::class.qualifiedName)
     }
 
     private fun setObservers() {

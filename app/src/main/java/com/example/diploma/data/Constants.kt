@@ -3,6 +3,10 @@ package com.example.diploma.data
 import com.example.diploma.R
 import com.example.diploma.data.model.Vacancy
 
+internal var PASSWORD_SHOWN: Boolean = false
+
+internal var CONFIRM_SHOWN: Boolean = false
+
 internal var NEED_TOKEN: Boolean? = true
 
 internal var CHOSEN_PROGRESS: Int? = null
@@ -43,10 +47,10 @@ internal var ROADMAP_ID: Int? = 0
 internal var TECHNOLOGY_ID: Int? = 0
 
 internal var colorsBack: List<String?> =
-    listOf<String?>("")
+    listOf<String?>("#E0FFFF", "#DBEFFF", "#FFFBEC", "#FEEEEE")
 
 internal var colorProgress: List<String?> =
-    listOf<String?>("")
+    listOf<String?>("#23B0B0", "#415EB6", "#FFB110", "#AC4040")
 
 internal var colorForeground: List<String?> =
     listOf<String?>("")

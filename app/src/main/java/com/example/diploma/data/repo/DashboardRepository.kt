@@ -6,6 +6,7 @@ import com.example.diploma.data.TECHNOLOGY_ID
 import com.example.diploma.data.TOPIC_ID
 import com.example.diploma.data.model.*
 import com.example.diploma.data.requestBody.VacancyRequestBody
+import com.example.diploma.data.responseBody.TopicsResponseBody
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
@@ -38,7 +39,7 @@ class DashboardRepository(
         }
     }
 
-    suspend fun getTopics(): List<Topic> {
+    suspend fun getTopics(): TopicsResponseBody {
         return withContext(Dispatchers.IO) {
             api.getTopics(
                 ROADMAP_ID!!,

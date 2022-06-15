@@ -1,9 +1,15 @@
 package com.example.diploma.ui.dashboard.profile
 
 import android.annotation.SuppressLint
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.graphics.BlendModeColorFilterCompat
+import androidx.core.graphics.BlendModeCompat
+import androidx.core.graphics.drawable.DrawableCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.example.diploma.data.colorProgress
+import com.example.diploma.data.colorsBack
 import com.example.diploma.data.model.User
 import com.example.diploma.databinding.ItemStudyProgressBinding
 
@@ -24,9 +30,21 @@ class StudyAdapter : RecyclerView.Adapter<StudyAdapter.ViewHolder>() {
         @SuppressLint("SetTextI18n")
         fun bind(study: User.UserProgress) = with(binding) {
             progressPercent.text = "${study.progress.toInt()} %"
-            progressCircle.progress = study.progress.toInt()
-            progressCircle.onFinishTemporaryDetach()
             courseName.text = study.tech_name
+
+            val textColor = colorProgress[(layoutPosition + 1) % colorProgress.size]
+            val backColor = colorsBack[(layoutPosition + 1) % colorsBack.size]
+            courseName.setTextColor(Color.parseColor(textColor))
+            DrawableCompat.setTint(
+                DrawableCompat.wrap(root.background),
+                Color.parseColor(backColor)
+            )
+            progressPercent.setTextColor(Color.parseColor(textColor))
+            progressCircle.progress = study.progress.toInt()
+            val drawable = progressCircle.progressDrawable
+            drawable.colorFilter = BlendModeColorFilterCompat.createBlendModeColorFilterCompat(
+                Color.parseColor(textColor), BlendModeCompat.SRC_ATOP
+            )
         }
     }
 

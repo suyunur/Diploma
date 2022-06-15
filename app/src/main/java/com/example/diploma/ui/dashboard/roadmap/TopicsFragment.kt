@@ -15,12 +15,6 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class TopicsFragment : DialogFragment(), TopicAdapter.ClickListener {
 
-    override fun onResume() {
-        super.onResume()
-        setObservers()
-        viewModel.getTopics()
-    }
-
     private var _binding: DiplomaFragmentTopicsBinding? = null
     private val binding get() = _binding!!
 
@@ -40,6 +34,8 @@ class TopicsFragment : DialogFragment(), TopicAdapter.ClickListener {
     ): View {
         _binding = DiplomaFragmentTopicsBinding.inflate(inflater, container, false)
 
+        setObservers()
+
         return binding.root
     }
 
@@ -52,18 +48,22 @@ class TopicsFragment : DialogFragment(), TopicAdapter.ClickListener {
 
         binding.courseName.text = CHOSEN_ROADMAP
         binding.sectionName.text = CHOSEN_SECTION
-
-        binding.progressBar.progress = CHOSEN_PROGRESS!!
-        binding.progressText.text = "$CHOSEN_PROGRESS% completed"
     }
 
     private fun setObservers() {
         viewModel.loadLiveData.observe(viewLifecycleOwner, loadObserver)
         viewModel.topicsLiveData.observe(viewLifecycleOwner, topicObserver)
+        viewModel.progressLiveData.observe(viewLifecycleOwner, progressObserver)
     }
 
     private val topicObserver = Observer<List<Topic>> {
         topicAdapter.setList(it)
+    }
+
+    @SuppressLint("SetTextI18n")
+    private val progressObserver = Observer<Float> {
+        binding.progressBar.progress = it.toInt()
+        binding.progressText.text = "${it.toInt()}% completed"
     }
 
     private val loadObserver = Observer<Boolean> {
@@ -72,13 +72,11 @@ class TopicsFragment : DialogFragment(), TopicAdapter.ClickListener {
             binding.topicsRecyclerView.visibility = View.GONE
             binding.progressBar.visibility = View.GONE
             binding.progressText.visibility = View.GONE
-            binding.content.visibility = View.GONE
         } else {
             binding.load.visibility = View.GONE
             binding.topicsRecyclerView.visibility = View.VISIBLE
             binding.progressBar.visibility = View.VISIBLE
             binding.progressText.visibility = View.VISIBLE
-            binding.content.visibility = View.VISIBLE
         }
     }
 

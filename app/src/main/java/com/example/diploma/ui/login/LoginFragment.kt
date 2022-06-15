@@ -2,6 +2,8 @@ package com.example.diploma.ui.login
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.text.method.HideReturnsTransformationMethod
+import android.text.method.PasswordTransformationMethod
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +13,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.diploma.R
+import com.example.diploma.data.PASSWORD_SHOWN
 import com.example.diploma.data.responseBody.AuthResponse
 import com.example.diploma.databinding.DiplomaFragmentLoginBinding
 import kotlinx.coroutines.DelicateCoroutinesApi
@@ -40,6 +43,8 @@ class LoginFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.topBar.title.text = context?.getString(R.string.login)
+
+        PASSWORD_SHOWN = false
 
         activity?.onBackPressedDispatcher?.addCallback(requireActivity(), object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
@@ -72,10 +77,11 @@ class LoginFragment : Fragment() {
     }
 
     private val tokenObserver = Observer<AuthResponse?> {
-        if (it.access != null) {
+        if (it == null) {
+            binding.errorLayout.visibility = View.VISIBLE
+        } else if (it.access != null) {
             viewModel.saveAuthResponse(it)
             openContainerFragment()
-            binding.errorLayout.visibility = View.VISIBLE
         }
     }
 
@@ -86,6 +92,10 @@ class LoginFragment : Fragment() {
 
         binding.loginActionButton.setOnClickListener {
             login()
+        }
+
+        binding.seePasswordButton.setOnClickListener {
+            changePasswordVisibility()
         }
     }
 
@@ -98,6 +108,16 @@ class LoginFragment : Fragment() {
                 email = email,
                 password = password
             )
+        }
+    }
+
+    private fun changePasswordVisibility() {
+        if (!PASSWORD_SHOWN) {
+            binding.passwordEditText.transformationMethod = HideReturnsTransformationMethod.getInstance()
+            PASSWORD_SHOWN = true
+        } else {
+            binding.passwordEditText.transformationMethod = PasswordTransformationMethod.getInstance()
+            PASSWORD_SHOWN = false
         }
     }
 

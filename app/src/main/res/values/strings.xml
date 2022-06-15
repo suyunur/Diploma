@@ -63,4 +63,8 @@
     <string name="invalid_e_mail_or_password">Invalid e-mail or password</string>
     <string name="hello">Hello</string>
     <string name="diploma_project">Diploma Project</string>
+    <string name="are_you_sure">Are you sure?</string>
+    <string name="are_you_sure_to_log_out_of_your_account">Are you sure to log out of your account?</string>
+    <string name="leave">Leave</string>
+    <string name="cancel">Cancel</string>
 </resources>
