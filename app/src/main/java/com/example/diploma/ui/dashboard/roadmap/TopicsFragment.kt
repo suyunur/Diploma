@@ -50,8 +50,9 @@ class TopicsFragment : DialogFragment(), TopicAdapter.ClickListener {
 
         binding.topPanel.leftButton.setImageResource(R.drawable.ic_auto_layout_horizontal__1_)
         binding.topPanel.leftButton.setOnClickListener { dismiss() }
+        binding.topPanel.leftButton.visibility = View.VISIBLE
+        binding.topPanel.title.text = CHOSEN_ROADMAP
 
-        binding.courseName.text = CHOSEN_ROADMAP
         binding.sectionName.text = CHOSEN_SECTION
     }
 
@@ -85,9 +86,10 @@ class TopicsFragment : DialogFragment(), TopicAdapter.ClickListener {
         }
     }
 
-    override fun onClick(topic: Topic) {
+    override fun onClick(topic: Topic, pos: Int) {
         TOPIC_NAME = topic.name
         TOPIC_ID = topic.id
+        TOPIC_NUM = pos
         IS_DONE = topic.is_done
 
         val dialog = MaterialFragment()

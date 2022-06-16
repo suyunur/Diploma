@@ -18,22 +18,11 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/courseName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="20dp"
-            android:fontFamily="@font/roboto_black"
-            android:textColor="@color/purple"
-            android:textSize="32sp"
-            tools:text="Backend" />
-
-        <TextView
             android:id="@+id/sectionName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
             android:layout_marginTop="10dp"
+            android:layout_gravity="center"
             android:fontFamily="@font/source_sans_pro_semibold"
             android:textColor="@color/purple"
             android:textSize="32sp"

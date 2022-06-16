@@ -21,7 +21,7 @@ class TopicAdapter(
     }
 
     interface ClickListener {
-        fun onClick(topic: Topic)
+        fun onClick(topic: Topic, pos: Int)
     }
 
     inner class ViewHolder(
@@ -31,7 +31,7 @@ class TopicAdapter(
         @SuppressLint("SetTextI18n")
         fun bind(topic: Topic) = with(binding) {
             root.setOnClickListener {
-                listener.onClick(topic)
+                listener.onClick(topic, layoutPosition + 1)
             }
             topicName.text = topic.name
             topicNum.text = "Chapter ${(layoutPosition + 1)}"

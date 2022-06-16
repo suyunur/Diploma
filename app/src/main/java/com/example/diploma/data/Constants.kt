@@ -6,6 +6,8 @@ import com.example.diploma.data.model.Vacancy
 
 internal var CURRENT_USER: User? = null
 
+internal var TOPIC_NUM: Int? = null
+
 internal var PASSWORD_SHOWN: Boolean = false
 
 internal var CONFIRM_SHOWN: Boolean = false
