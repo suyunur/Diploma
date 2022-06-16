@@ -56,5 +56,5 @@ interface DiplomaApi {
         @Path("spec_id") roadmapId: Int,
         @Path("tech_id") techId: Int,
         @Path("topic_id") topicId: Int
-    )
+    ): Any
 }

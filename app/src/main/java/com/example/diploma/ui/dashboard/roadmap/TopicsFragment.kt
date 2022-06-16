@@ -48,6 +48,9 @@ class TopicsFragment : DialogFragment(), TopicAdapter.ClickListener {
         topicAdapter = TopicAdapter(this)
         binding.topicsRecyclerView.adapter = topicAdapter
 
+        binding.topPanel.leftButton.setImageResource(R.drawable.ic_auto_layout_horizontal__1_)
+        binding.topPanel.leftButton.setOnClickListener { dismiss() }
+
         binding.courseName.text = CHOSEN_ROADMAP
         binding.sectionName.text = CHOSEN_SECTION
     }

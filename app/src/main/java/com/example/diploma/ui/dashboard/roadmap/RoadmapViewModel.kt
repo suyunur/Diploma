@@ -39,6 +39,10 @@ class RoadmapViewModel(
         get() = _progressLiveData
     private val _progressLiveData = MutableLiveData<Float>()
 
+    val doneLiveData: LiveData<Any>
+        get() = _doneLiveData
+    private val _doneLiveData = MutableLiveData<Any>()
+
     fun getTopics() = viewModelScope.launch {
         _loadLiveData.value = true
 
@@ -77,7 +81,7 @@ class RoadmapViewModel(
     fun doneTopic() = viewModelScope.launch {
         _loadLiveData.value = true
 
-        dashboardRepository.doneTopic()
+        _doneLiveData.value = dashboardRepository.doneTopic()
 
         _loadLiveData.value = false
     }

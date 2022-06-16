@@ -31,6 +31,7 @@ class AuthViewModel(
         name: String,
         surname: String,
         email: String,
+        phone: String,
         password: String
     ) = viewModelScope.launch {
         _loadLiveData.value = true
@@ -42,7 +43,8 @@ class AuthViewModel(
                 first_name = name,
                 last_name = surname,
                 email = email,
-                password = password
+                password = password,
+                phone_number = phone
             )
         )
 

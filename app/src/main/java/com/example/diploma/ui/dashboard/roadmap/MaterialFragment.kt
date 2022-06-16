@@ -54,6 +54,7 @@ open class MaterialFragment : DialogFragment(), MaterialAdapter.ClickListener {
             onDoneClicked()
         }
 
+
         viewModel.getMaterial()
 
         fillMaterials()
@@ -72,6 +73,12 @@ open class MaterialFragment : DialogFragment(), MaterialAdapter.ClickListener {
     private fun setUpObservers() {
         viewModel.materialLiveData.observe(viewLifecycleOwner, materialObserver)
         viewModel.loadLiveData.observe(viewLifecycleOwner, loadObserver)
+        viewModel.doneLiveData.observe(viewLifecycleOwner, doneObserver)
+    }
+
+    private val doneObserver = Observer<Any> {
+        listener.onDismissed()
+        dismiss()
     }
 
     private val loadObserver = Observer<Boolean> {
@@ -112,8 +119,6 @@ open class MaterialFragment : DialogFragment(), MaterialAdapter.ClickListener {
 
     private fun onDoneClicked() {
         viewModel.doneTopic()
-        listener.onDismissed()
-        dismiss()
     }
 
     override fun onClick(link: String, type: String) {

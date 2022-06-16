@@ -2,10 +2,9 @@ package com.example.diploma.ui.dashboard.profile
 
 import android.annotation.SuppressLint
 import android.graphics.Color
+import android.graphics.ColorFilter
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.graphics.BlendModeColorFilterCompat
-import androidx.core.graphics.BlendModeCompat
 import androidx.core.graphics.drawable.DrawableCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.diploma.data.colorProgress
@@ -41,10 +40,6 @@ class StudyAdapter : RecyclerView.Adapter<StudyAdapter.ViewHolder>() {
             )
             progressPercent.setTextColor(Color.parseColor(textColor))
             progressCircle.progress = study.progress.toInt()
-            val drawable = progressCircle.progressDrawable
-            drawable.colorFilter = BlendModeColorFilterCompat.createBlendModeColorFilterCompat(
-                Color.parseColor(textColor), BlendModeCompat.SRC_ATOP
-            )
         }
     }
 

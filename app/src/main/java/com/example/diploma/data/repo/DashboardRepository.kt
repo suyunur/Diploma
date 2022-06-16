@@ -66,8 +66,8 @@ class DashboardRepository(
         }
     }
 
-    suspend fun doneTopic() {
-        withContext(Dispatchers.IO) {
+    suspend fun doneTopic(): Any {
+        return withContext(Dispatchers.IO) {
             api.done(ROADMAP_ID!!, TECHNOLOGY_ID!!, TOPIC_ID!!)
         }
     }

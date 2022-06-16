@@ -7,7 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import com.example.diploma.R
 import com.example.diploma.data.CHOSEN_PROGRESS
 import com.example.diploma.data.CHOSEN_ROADMAP
 import com.example.diploma.data.CHOSEN_SECTION
@@ -41,6 +43,9 @@ class TechFragment : Fragment(), TechAdapter.ClickListener {
         super.onViewCreated(view, savedInstanceState)
 
         binding.topPanel.title.text = CHOSEN_ROADMAP
+        binding.topPanel.leftButton.visibility = View.VISIBLE
+        binding.topPanel.leftButton.setImageResource(R.drawable.ic_auto_layout_horizontal__1_)
+        binding.topPanel.leftButton.setOnClickListener { findNavController().popBackStack() }
 
         val layoutManager = GridLayoutManager(requireContext(), 2)
         techAdapter = TechAdapter(this)

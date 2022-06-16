@@ -72,4 +72,5 @@
     <string name="save">Save</string>
     <string name="_7777777777">+7777777777</string>
     <string name="example_gmail_com">example@gmail.com</string>
+    <string name="invalid_credentials">Invalid credentials</string>
 </resources>

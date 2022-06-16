@@ -6,7 +6,7 @@ data class User(
     var first_name: String?,
     var last_name: String?,
     var email: String,
-    var phone: String,
+    var phone_number: String,
     var skills: List<UserSkills>?,
     var user_studies: List<UserProgress>?
 ) {
