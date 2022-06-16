@@ -6,5 +6,6 @@ data class Technology(
     val id: Int?,
     val name: String?,
     val description: String?,
-    val image_url: String?
+    val image_url: String?,
+    val progress: Float
 ) : Serializable

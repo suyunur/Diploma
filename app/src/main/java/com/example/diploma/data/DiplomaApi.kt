@@ -3,26 +3,29 @@ package com.example.diploma.data
 import com.example.diploma.data.model.*
 import com.example.diploma.data.requestBody.LoginRequestBody
 import com.example.diploma.data.requestBody.UserRequestBody
+import com.example.diploma.data.requestBody.VacancyRequestBody
 import com.example.diploma.data.responseBody.AuthResponse
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Path
+import com.example.diploma.data.responseBody.UserResponseBody
+import com.example.diploma.data.responseBody.TopicsResponseBody
+import retrofit2.http.*
 
 
 interface DiplomaApi {
 
     @POST("register/")
-    suspend fun register(@Body user: UserRequestBody): AuthResponse?
+    suspend fun register(@Body user: UserRequestBody): UserResponseBody?
 
     @POST("token/")
-    suspend fun login(@Body user: LoginRequestBody): AuthResponse?
+    suspend fun login(@Body user: LoginRequestBody): UserResponseBody?
 
     @GET("recs/")
     suspend fun getNews(): List<News?>
 
     @GET("vacancies/")
     suspend fun getVacancies(): List<Vacancy?>
+
+    @PUT("vacancies/")
+    suspend fun updateVacancies(@Body data: VacancyRequestBody): List<Vacancy?>
 
     @GET("me/")
     suspend fun getUserInfo(): User
@@ -34,7 +37,7 @@ interface DiplomaApi {
     suspend fun getTopics(
         @Path("spec_id") roadmapId: Int,
         @Path("tech_id") techId: Int
-    ): List<Topic>
+    ): TopicsResponseBody
 
     @GET("roadmaps/{spec_id}/")
     suspend fun getTechs(
@@ -53,5 +56,5 @@ interface DiplomaApi {
         @Path("spec_id") roadmapId: Int,
         @Path("tech_id") techId: Int,
         @Path("topic_id") topicId: Int
-    )
+    ): Any
 }

@@ -1,6 +1,9 @@
 package com.example.diploma.ui.dashboard.home
 
 import android.annotation.SuppressLint
+import android.content.res.Resources
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -13,7 +16,7 @@ class NewsAdapter(
     private val clickListener: ClickListener
 ) : RecyclerView.Adapter<NewsAdapter.ViewHolder>() {
 
-    var news = mutableListOf<News?>()
+    private var news = mutableListOf<News?>()
 
     @SuppressLint("NotifyDataSetChanged")
     fun setList(news: List<News?>) {
@@ -52,7 +55,19 @@ class NewsAdapter(
 
             newsTitle.text = news.title
 
-            RECS_IMAGES[layoutPosition]?.let { newsImage.setImageResource(it) }
+            RECS_IMAGES[layoutPosition]?.let { newsImage.setImageBitmap(
+                getBitmap(root.context.resources, it)
+            ) }
         }
+    }
+
+    private fun getBitmap(res: Resources, image: Int): Bitmap? {
+        val options = BitmapFactory.Options()
+        options.inJustDecodeBounds = false
+        options.inSampleSize = 1
+        options.inScaled = false
+        options.inPreferredConfig = Bitmap.Config.ARGB_8888
+
+        return BitmapFactory.decodeResource(res, image, options)
     }
 }

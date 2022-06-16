@@ -102,7 +102,7 @@ class RoadmapFragment : Fragment() {
         binding.frontEndRoadmap.roadmapImage.setImageResource(R.mipmap.ic_frontend)
         binding.backendRoadmap.roadmapImage.setImageResource(R.mipmap.ic_backend)
         binding.androidRoadmap.roadmapImage.setImageResource(R.mipmap.ic_android)
-        binding.iosRoadmap.roadmapImage.setImageResource(R.mipmap.ic_ios)
+        binding.iosRoadmap.roadmapImage.setImageResource(R.mipmap.image_ios)
         binding.networkRoadmap.roadmapImage.setImageResource(R.mipmap.ic_network)
         binding.qaRoadmap.roadmapImage.setImageResource(R.mipmap.ic_qa)
 

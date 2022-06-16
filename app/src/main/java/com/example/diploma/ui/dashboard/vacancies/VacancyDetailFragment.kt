@@ -17,11 +17,9 @@ import com.example.diploma.databinding.DiplomaFragmentVacancyDetailBinding
 class VacancyDetailFragment : DialogFragment() {
 
     companion object {
-
         fun newInstance(): VacancyDetailFragment {
             return VacancyDetailFragment()
         }
-
     }
 
     private var _binding: DiplomaFragmentVacancyDetailBinding? = null
@@ -44,6 +42,9 @@ class VacancyDetailFragment : DialogFragment() {
         requirementsAdapter = RequirementsAdapter()
 
         binding.topPanel.title.text = getString(R.string.job_detail)
+        binding.topPanel.leftButton.visibility = View.VISIBLE
+        binding.topPanel.leftButton.setImageResource(R.drawable.ic_auto_layout_horizontal__1_)
+        binding.topPanel.leftButton.setOnClickListener { dismiss() }
 
         fillVacancyDetail()
 

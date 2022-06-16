@@ -2,6 +2,9 @@ package com.example.diploma.ui.dashboard.profile
 
 import android.annotation.SuppressLint
 import android.content.SharedPreferences
+import android.content.res.Resources
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -47,8 +50,19 @@ class ProfileFragment : Fragment() {
         binding.topPanel.rightButton.setOnClickListener {
             logout()
         }
+        binding.userImage.setImageBitmap(getBitmap(resources, R.mipmap.image_user))
 
         return binding.root
+    }
+
+    private fun getBitmap(res: Resources, image: Int): Bitmap? {
+        val options = BitmapFactory.Options()
+        options.inJustDecodeBounds = false
+        options.inSampleSize = 1
+        options.inScaled = false
+        options.inPreferredConfig = Bitmap.Config.ARGB_8888
+
+        return BitmapFactory.decodeResource(res, image, options)
     }
 
     @SuppressLint("SetTextI18n")
@@ -63,9 +77,16 @@ class ProfileFragment : Fragment() {
     }
 
     private fun logout() {
-        sharedPreferences.edit().remove(context?.getString(R.string.auth_token)).apply()
-        sharedPreferences.edit().remove(context?.getString(R.string.user_id)).apply()
-        findNavController().navigate(R.id.action_container_to_login)
+        val dialog = LogoutDialog()
+        dialog.setListener {
+            dialog.dismiss()
+            sharedPreferences.edit().remove(context?.getString(R.string.auth_token)).apply()
+            sharedPreferences.edit().remove(context?.getString(R.string.user_id)).apply()
+            sharedPreferences.edit().remove(context?.getString(R.string.username)).apply()
+            findNavController().navigate(R.id.action_container_to_login)
+        }
+
+        dialog.show(parentFragmentManager, dialog::class.qualifiedName)
     }
 
     private fun setObservers() {

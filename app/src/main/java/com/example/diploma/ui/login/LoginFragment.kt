@@ -2,17 +2,23 @@ package com.example.diploma.ui.login
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.text.method.HideReturnsTransformationMethod
+import android.text.method.PasswordTransformationMethod
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.diploma.R
+import com.example.diploma.data.PASSWORD_SHOWN
 import com.example.diploma.data.responseBody.AuthResponse
 import com.example.diploma.databinding.DiplomaFragmentLoginBinding
 import kotlinx.coroutines.DelicateCoroutinesApi
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import kotlin.system.exitProcess
 
 
 @DelicateCoroutinesApi
@@ -38,6 +44,16 @@ class LoginFragment : Fragment() {
 
         binding.topBar.title.text = context?.getString(R.string.login)
 
+        PASSWORD_SHOWN = false
+
+        activity?.onBackPressedDispatcher?.addCallback(requireActivity(), object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                parentFragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+                activity!!.finish()
+                exitProcess(0)
+            }
+        })
+
         setUpObservers()
 
         setUpClickListeners()
@@ -61,10 +77,11 @@ class LoginFragment : Fragment() {
     }
 
     private val tokenObserver = Observer<AuthResponse?> {
-        if (it.access != null) {
+        if (it == null) {
+            binding.errorLayout.visibility = View.VISIBLE
+        } else if (it.access != null) {
             viewModel.saveAuthResponse(it)
             openContainerFragment()
-            binding.errorLayout.visibility = View.VISIBLE
         }
     }
 
@@ -75,6 +92,13 @@ class LoginFragment : Fragment() {
 
         binding.loginActionButton.setOnClickListener {
             login()
+        }
+
+        binding.seePasswordButton.setOnClickListener {
+            changePasswordVisibility()
+        }
+        binding.forgotPasswordText.setOnClickListener {
+            openForgotPasswordFragment()
         }
     }
 
@@ -90,12 +114,26 @@ class LoginFragment : Fragment() {
         }
     }
 
+    private fun changePasswordVisibility() {
+        if (!PASSWORD_SHOWN) {
+            binding.passwordEditText.transformationMethod = HideReturnsTransformationMethod.getInstance()
+            PASSWORD_SHOWN = true
+        } else {
+            binding.passwordEditText.transformationMethod = PasswordTransformationMethod.getInstance()
+            PASSWORD_SHOWN = false
+        }
+    }
+
     private fun openRegisterFragment() {
         findNavController().navigate(R.id.action_login_to_register)
     }
 
     private fun openContainerFragment() {
         findNavController().navigate(R.id.action_login_to_container)
+    }
+
+    private fun openForgotPasswordFragment() {
+        findNavController().navigate(R.id.action_login_to_forgot)
     }
 
     private fun hideErrorTexts() {

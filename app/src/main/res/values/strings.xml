@@ -51,7 +51,7 @@
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
+    <string name="next">Done</string>
     <string name="previous">Previous</string>
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
@@ -63,4 +63,14 @@
     <string name="invalid_e_mail_or_password">Invalid e-mail or password</string>
     <string name="hello">Hello</string>
     <string name="diploma_project">Diploma Project</string>
+    <string name="are_you_sure">Are you sure?</string>
+    <string name="are_you_sure_to_log_out_of_your_account">Are you sure to log out of your account?</string>
+    <string name="leave">Leave</string>
+    <string name="cancel">Cancel</string>
+    <string name="resent_code_in">Resent code in</string>
+    <string name="verify">Verify</string>
+    <string name="save">Save</string>
+    <string name="_7777777777">+7777777777</string>
+    <string name="example_gmail_com">example@gmail.com</string>
+    <string name="invalid_credentials">Invalid credentials</string>
 </resources>

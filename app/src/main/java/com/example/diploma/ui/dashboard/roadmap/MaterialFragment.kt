@@ -11,7 +11,7 @@ import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
 import com.example.diploma.R
-import com.example.diploma.data.TOPIC_ID
+import com.example.diploma.data.TOPIC_NUM
 import com.example.diploma.data.model.Material
 import com.example.diploma.databinding.DiplomaStudyMaterialBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -54,6 +54,7 @@ open class MaterialFragment : DialogFragment(), MaterialAdapter.ClickListener {
             onDoneClicked()
         }
 
+
         viewModel.getMaterial()
 
         fillMaterials()
@@ -72,6 +73,12 @@ open class MaterialFragment : DialogFragment(), MaterialAdapter.ClickListener {
     private fun setUpObservers() {
         viewModel.materialLiveData.observe(viewLifecycleOwner, materialObserver)
         viewModel.loadLiveData.observe(viewLifecycleOwner, loadObserver)
+        viewModel.doneLiveData.observe(viewLifecycleOwner, doneObserver)
+    }
+
+    private val doneObserver = Observer<Any> {
+        listener.onDismissed()
+        dismiss()
     }
 
     private val loadObserver = Observer<Boolean> {
@@ -88,7 +95,7 @@ open class MaterialFragment : DialogFragment(), MaterialAdapter.ClickListener {
     private val materialObserver = Observer<Material> {
         binding.chapterTitle.text = it.name
         binding.chapterText.text = it.description
-        binding.chapterNum.text = "Chapter ${TOPIC_ID!!}"
+        binding.chapterNum.text = "Chapter ${TOPIC_NUM!!}"
         adapter.setList(it.subtopic)
 
         Glide
@@ -112,8 +119,6 @@ open class MaterialFragment : DialogFragment(), MaterialAdapter.ClickListener {
 
     private fun onDoneClicked() {
         viewModel.doneTopic()
-        listener.onDismissed()
-        dismiss()
     }
 
     override fun onClick(link: String, type: String) {

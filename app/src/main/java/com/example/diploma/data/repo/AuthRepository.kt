@@ -3,10 +3,12 @@ package com.example.diploma.data.repo
 import android.content.Context
 import android.content.SharedPreferences
 import com.example.diploma.R
+import com.example.diploma.data.CURRENT_USER
 import com.example.diploma.data.DiplomaApi
 import com.example.diploma.data.requestBody.LoginRequestBody
 import com.example.diploma.data.requestBody.UserRequestBody
 import com.example.diploma.data.responseBody.AuthResponse
+import com.example.diploma.data.responseBody.UserResponseBody
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -19,7 +21,7 @@ class AuthRepository(
     private val context: Context
 ) : MainRepository() {
 
-    suspend fun register(user: UserRequestBody): AuthResponse? {
+    suspend fun register(user: UserRequestBody): UserResponseBody? {
         return try {
             withContext(Dispatchers.IO) {
                 api.register(user)
@@ -29,7 +31,7 @@ class AuthRepository(
         }
     }
 
-    suspend fun login(user: LoginRequestBody): AuthResponse? {
+    suspend fun login(user: LoginRequestBody): UserResponseBody? {
         return try {
             withContext(Dispatchers.IO) {
                 api.login(user)
@@ -43,6 +45,8 @@ class AuthRepository(
         sharedPreferences.edit().putString(context.getString(R.string.auth_token), response.refresh)
             .apply()
         sharedPreferences.edit().putString(context.getString(R.string.user_id), response.access)
+            .apply()
+        sharedPreferences.edit().putString(context.getString(R.string.username), CURRENT_USER?.first_name)
             .apply()
     }
 }

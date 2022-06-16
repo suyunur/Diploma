@@ -24,6 +24,7 @@ class VacanciesAdapter(
 
     interface ClickListener {
         fun onClick(vacancy: Vacancy)
+        fun onMark(id: Int, isMark: Boolean)
     }
 
     inner class ViewHolder(
@@ -34,6 +35,22 @@ class VacanciesAdapter(
         fun bind(vacancy: Vacancy) = with(binding) {
             root.setOnClickListener {
                 listener.onClick(vacancy)
+            }
+
+            if (vacancy.is_favourite == true)
+                bookmark.setImageResource(R.drawable.ic_bookmark)
+            else
+                bookmark.setImageResource(R.drawable.ic_mark)
+
+            bookmark.setOnClickListener {
+                if (vacancy.is_favourite == true) {
+                    bookmark.setImageResource(R.drawable.ic_mark)
+                    vacancy.id?.let { it1 -> listener.onMark(it1, false) }
+                }
+                else {
+                    bookmark.setImageResource(R.drawable.ic_bookmark)
+                    vacancy.id?.let { it1 -> listener.onMark(it1, true) }
+                }
             }
 
             vacancyTitle.text = vacancy.title
@@ -49,8 +66,6 @@ class VacanciesAdapter(
             vacancyDetail.text = "${vacancy.location} - $jobType"
             salary.text = vacancy.final_salary.toString()
                 .substring(0, vacancy.final_salary.toString().lastIndexOf(".")) + " KZT"
-
-
             Glide
                 .with(vacancyImage.context)
                 .load(vacancy.imageUrl)

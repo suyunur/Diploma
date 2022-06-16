@@ -2,7 +2,8 @@ package com.example.diploma.ui.login
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.text.InputType
+import android.text.method.HideReturnsTransformationMethod
+import android.text.method.PasswordTransformationMethod
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +11,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.diploma.R
+import com.example.diploma.data.CONFIRM_SHOWN
+import com.example.diploma.data.PASSWORD_SHOWN
 import com.example.diploma.data.responseBody.AuthResponse
 import com.example.diploma.databinding.DiplomaFragmentRegisterBinding
 import kotlinx.coroutines.DelicateCoroutinesApi
@@ -37,6 +40,9 @@ class RegisterFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        PASSWORD_SHOWN = false
+        CONFIRM_SHOWN = false
+
         binding.topBar.title.text = context?.getString(R.string.sign_up)
 
         setUpObservers()
@@ -54,7 +60,9 @@ class RegisterFragment : Fragment() {
     }
 
     private val tokenObserver = Observer<AuthResponse?> {
-        if (it.access != null) {
+        if (it == null) {
+            binding.errorLayout.visibility = View.VISIBLE
+        } else if (it.access != null) {
             viewModel.saveAuthResponse(it)
             openContainerFragment()
             hideErrorTexts()
@@ -88,12 +96,11 @@ class RegisterFragment : Fragment() {
         val name = binding.nameEditText.text.toString()
         val surname = binding.surnameEditText.text.toString()
         val email = binding.emailEditText.text.toString()
-        val phone = binding.phoneNumberEditText.text.toString()
         val password = binding.passwordEditText.text.toString()
+        val phone = binding.phoneNumberEditText.text.toString()
 
         viewModel.register(
-            name = name, surname = surname, email = email,
-            phoneNumber = phone, password = password
+            name = name, surname = surname, email = email, password = password, phone = phone
         )
     }
 
@@ -148,6 +155,7 @@ class RegisterFragment : Fragment() {
         binding.phoneNumberErrorText.visibility = View.GONE
         binding.passwordErrorText.visibility = View.GONE
         binding.confirmErrorText.visibility = View.GONE
+        binding.errorLayout.visibility = View.GONE
     }
 
     private fun openLoginFragment() {
@@ -155,23 +163,26 @@ class RegisterFragment : Fragment() {
     }
 
     private fun openContainerFragment() {
-        findNavController().navigate(R.id.action_login_to_container)
+        findNavController().navigate(R.id.action_register_to_container)
     }
 
     private fun changePasswordVisibility() {
-        if (binding.passwordEditText.inputType == InputType.TYPE_TEXT_VARIATION_PASSWORD) {
-            binding.passwordEditText.inputType = InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
+        if (!PASSWORD_SHOWN) {
+            binding.passwordEditText.transformationMethod = HideReturnsTransformationMethod.getInstance()
+            PASSWORD_SHOWN = true
         } else {
-            binding.passwordEditText.inputType = InputType.TYPE_TEXT_VARIATION_PASSWORD
+            binding.passwordEditText.transformationMethod = PasswordTransformationMethod.getInstance()
+            PASSWORD_SHOWN = false
         }
     }
 
     private fun changeConfirmVisibility() {
-        if (binding.confirmPasswordEditText.inputType == InputType.TYPE_TEXT_VARIATION_PASSWORD) {
-            binding.confirmPasswordEditText.inputType =
-                InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
+        if (!CONFIRM_SHOWN) {
+            binding.confirmPasswordEditText.transformationMethod = HideReturnsTransformationMethod.getInstance()
+            CONFIRM_SHOWN = true
         } else {
-            binding.confirmPasswordEditText.inputType = InputType.TYPE_TEXT_VARIATION_PASSWORD
+            binding.confirmPasswordEditText.transformationMethod = PasswordTransformationMethod.getInstance()
+            CONFIRM_SHOWN = false
         }
     }
 }

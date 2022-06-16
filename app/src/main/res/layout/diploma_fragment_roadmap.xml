@@ -9,55 +9,69 @@
         android:id="@+id/topPanel"
         layout="@layout/layout_top"/>
 
-    <LinearLayout
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:orientation="horizontal"
-        android:gravity="center_horizontal">
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
-        <include
-            android:id="@+id/frontEndRoadmap"
-            layout="@layout/layout_roadmap"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-        <include
-            android:id="@+id/backendRoadmap"
-            layout="@layout/layout_roadmap"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal"
+                android:gravity="center_horizontal">
 
-    </LinearLayout>
+                <include
+                    android:id="@+id/frontEndRoadmap"
+                    layout="@layout/layout_roadmap"/>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="16dp"
-        android:gravity="center_horizontal">
+                <include
+                    android:id="@+id/backendRoadmap"
+                    layout="@layout/layout_roadmap"/>
 
-        <include
-            android:id="@+id/iosRoadmap"
-            layout="@layout/layout_roadmap"/>
+            </LinearLayout>
 
-        <include
-            android:id="@+id/androidRoadmap"
-            layout="@layout/layout_roadmap"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="16dp"
+                android:gravity="center_horizontal">
 
-    </LinearLayout>
+                <include
+                    android:id="@+id/iosRoadmap"
+                    layout="@layout/layout_roadmap"/>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="16dp"
-        android:gravity="center_horizontal">
+                <include
+                    android:id="@+id/androidRoadmap"
+                    layout="@layout/layout_roadmap"/>
 
-        <include
-            android:id="@+id/qaRoadmap"
-            layout="@layout/layout_roadmap"/>
+            </LinearLayout>
 
-        <include
-            android:id="@+id/networkRoadmap"
-            layout="@layout/layout_roadmap"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="16dp"
+                android:gravity="center_horizontal">
 
-    </LinearLayout>
+                <include
+                    android:id="@+id/qaRoadmap"
+                    layout="@layout/layout_roadmap"/>
+
+                <include
+                    android:id="@+id/networkRoadmap"
+                    layout="@layout/layout_roadmap"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
 
 </LinearLayout>
